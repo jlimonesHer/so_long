@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_prueba.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:35:31 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/12 08:24:21 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:26:02 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx/mlx.h"
+#include "so_long.h"
 
 //https://github.com/S-LucasSerrano/miniLibX_sample/blob/main/README.md
 
@@ -30,7 +30,7 @@ mlx_pointer = mlx_init();
  * @param height alto de ventana
  * @param name titulo en la parte superior
  */
-void	window = mlx_new_window(mlx_pointer, width, height, name);
+void	window = mlx_new_window(mlx_pointer, WIDTH, HEIGHT, name);
 
 /*Estructura para que contengan los datos*/
 typedef struct	s_program
