@@ -6,16 +6,20 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:16:00 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/03 11:01:29 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:35:47 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * Encuentra la aguja en el pajar.
+ * @brief 
+ * 
+ * @param haystack (pajar) string en la que buscar la aguja
+ * @param needle (agujar) string que hay que buscar
+ * @param n numero de caracteres de needle
+ * @return char* 
  */
-
 char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 {
 	size_t	i;

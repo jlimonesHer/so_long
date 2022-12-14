@@ -1,29 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 17:01:48 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/14 12:46:25 by jlimones         ###   ########.fr       */
+/*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
+/*   Updated: 2022/12/14 17:29:48 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	char	*str;
-	int		i;
-
-	if (!s1 || !set)
-		return (0);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	i = ft_strlen(s1);
-	while (i != 0 && ft_strchr(set, s1[i]))
-		i--;
-	str = ft_substr(s1, 0, i + 1);
-	return (str);
-}

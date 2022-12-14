@@ -6,21 +6,18 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/14 11:47:09 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:59:15 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
 
-typedef struct s_position
+enum e_size
 {
-	mlx_t			*mlx;
-	mlx_image_t		*img;
-	mlx_texture_t	*texture;
-	int				x;
-	int				y;
-}	t_position;
+	WIDTH = 800,
+	HEIGHT = 400	
+};
 
 /**
  * @brief Esta funcion limpiara la imagen del PJ
@@ -38,6 +35,32 @@ void	clean_image(mlx_image_t *img)
 		img->pixels[p++] = 0;
 }
 
+/**
+ * @brief 
+ * 
+ * @param posit 
+ * @param flat_void 
+ */
+void	ft_map_void(t_position posit, char *path)
+{
+	int	x;
+	int	y;
+	mlx_texture_t *texture;
+
+	texture = mlx_load_png(path);
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			mlx_draw_texture(posit.img, texture, x, y);
+			x += texture->width;
+		}
+		y += texture->height;
+	}
+}
+/*
 void	move_and_perspective(mlx_key_data_t keydata, void *param)
 {
 	t_position		*move;
@@ -45,49 +68,77 @@ void	move_and_perspective(mlx_key_data_t keydata, void *param)
 	move = (t_position *)param;
 	if (keydata.key == MLX_KEY_W)
 	{
-		move->texture = mlx_load_png("./img/evil_back.png");
-		move->y -= 6;
+		move->texture = mlx_load_png("./img/back_flat.png");
+		move->y -= 4;
 	}
 	else if (keydata.key == MLX_KEY_S)
 	{
-		move->texture = mlx_load_png("./img/evil.png");
-		move->y += 6;
+		move->texture = mlx_load_png("./img/front_flat.png");
+		move->y += 4;
 	}
 	else if (keydata.key == MLX_KEY_A)
 	{
-		move->texture = mlx_load_png("./img/evil_left.png");
-		move->x -= 6;
+		move->texture = mlx_load_png("./img/left_flat.png");
+		move->x -= 4;
 	}
 	else if (keydata.key == MLX_KEY_D)
 	{
-		move->texture = mlx_load_png("./img/evil_right.png");
-		move->x += 6;
+		move->texture = mlx_load_png("./img/right_flat.png");
+		move->x += 4;
 	}
 	ft_printf("key: %i\n", keydata.key);
+	ft_map_void(*move, "./img/flat2.png");
 	mlx_draw_texture(move->img, move->texture, move->x, move->y);
 }
-/*
-void	ft_map()
-{
-	
-}
 */
-
-int	main(void)
+void	move_and_perspective(mlx_key_data_t keydata, void *param)
 {
-	t_position	move;
+	t_position		*move;
 
-	move.x = 50;
-	move.y = 50;
-	move.mlx = mlx_init(900, 900, "prueba so_long", false);
-	move.img = mlx_new_image(move.mlx, 1000, 1000);
-	if (!move.img)
-		printf("error");
-	mlx_key_hook(move.mlx, move_and_perspective, &move);
-	move.texture = mlx_load_png("./img/evil.png");
-	if (!move.texture)
-		return (-1);
-	mlx_draw_texture(move.img, move.texture, move.x, move.y);
-	mlx_image_to_window(move.mlx, move.img, 0, 0);
-	mlx_loop(move.mlx);
+	move = (t_position *)param;
+	if (keydata.key == MLX_KEY_W)
+	{
+		move->y -= 4;
+	}
+	else if (keydata.key == MLX_KEY_S)
+	{
+		move->y += 4;
+	}
+	else if (keydata.key == MLX_KEY_A)
+	{
+		move->x -= 4;
+	}
+	else if (keydata.key == MLX_KEY_D)
+	{
+		move->x += 4;
+	}
+	ft_printf("key: %i\n", keydata.key);
+	ft_map_void(*move, "./img/flat2.png");
+	mlx_draw_texture(move->img, move->texture, move->x, move->y);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_position	posit;
+	t_flat		flat_void;
+
+	if (argc == 1)
+	{	
+		posit.x = 50;
+		posit.y = 50;
+		posit.mlx = mlx_init(WIDTH, HEIGHT, "prueba so_long", false);
+		posit.img = mlx_new_image(posit.mlx, 1000, 1000);
+		ft_map_void(posit, "./img/flat2.png");
+		if (!posit.img)
+			ft_printf("error");
+		mlx_key_hook(posit.mlx, move_and_perspective, &posit);
+		// posit.texture = mlx_load_png("./img/front_flat.png");
+		xpm_t *texture = mlx_load_xpm42("./img/front_flat.xpm42");
+		// if (!posit.texture)
+			//return (-1);
+		posit.texture = &texture->texture;
+		mlx_draw_texture(posit.img, &texture->texture, posit.x, posit.y);
+		mlx_image_to_window(posit.mlx, posit.img, 0, 0);
+		mlx_loop(posit.mlx);
+	}
 }
