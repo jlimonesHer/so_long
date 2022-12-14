@@ -6,7 +6,7 @@
 #    By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 12:35:12 by jlimones          #+#    #+#              #
-#    Updated: 2022/12/02 14:27:56 by jlimones         ###   ########.fr        #
+#    Updated: 2022/12/14 12:12:35 by jlimones         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C ft_printf
+	@make -C GNL
+	@cp GNL/libftGNL.a $(NAME)
 	@cp ft_printf/libftprintf.a $(NAME)
 	ar crs $(NAME) $(OBJ)
 	
@@ -78,10 +80,12 @@ $(NAME): $(OBJ)
 clean:
 	rm -f $(OBJ) $(OBJECTSBONUS)
 	@make clean -C ft_printf
+	@make clean -C GNL
 
 fclean: clean
 	rm -f $(NAME)
 	@make fclean -C ft_printf
+	@make fclean -C GNL
 
 re: fclean all
 

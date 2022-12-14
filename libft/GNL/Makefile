@@ -5,37 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/09 09:17:57 by jlimones          #+#    #+#              #
-#    Updated: 2022/12/14 12:06:08 by jlimones         ###   ########.fr        #
+#    Created: 2022/12/14 12:00:14 by jlimones          #+#    #+#              #
+#    Updated: 2022/12/14 12:04:39 by jlimones         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long
-LIBFT = libft/libft.a
-FLAGS = -Wall -Werror -Wextra
-SRC = src/so_long.c
-LIB = -lglfw -L /sgoinfre/goinfre/Perso/jlimones/homebrew/Cellar/glfw/3.3.8/lib
-MLX = MLX42/libmlx42.a
+SRC = 	get_next_line.c\
+		get_next_line_utils.c
 
+CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+NAME = libftGNL.a
 
-$(NAME): $(SRC)
-	@make -C libft
-	@make -C MLX42
-	gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(LIBFT)
+HEAD = libftGNL.h
+OBJ = $(SRC:.c=.o)
 
-skiperror:
-	gcc -o $(NAME) $(SRC) -g $(LIB)
+all : $(NAME)
+
+$(NAME): $(OBJ)
+	@ar crs $(NAME) $(OBJ)
+	
+%.o: %.c $(HEAD)
+	@gcc $(CFLAGS) -c $< -o $@
 
 clean:
-	@make clean -C libft
-	@make clean -C MLX42
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
-	@make fclean -C libft
-	@make fclean -C MLX42
-	
+	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all, clean, fclean, re
