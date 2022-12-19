@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 08:40:28 by jlimones          #+#    #+#             */
-/*   Updated: 2022/10/18 18:34:39 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:18:45 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_mod_join(char *buff, char *tmp)
 {
 	char	*join;
 
-	join = ft_strjoin(buff, tmp);
+	join = ft_strjoin_gnl(buff, tmp);
 	free(buff);
 	return (join);
 }
@@ -52,7 +52,7 @@ char	*ft_get_line(char *buff)
 		return (0);
 	while (buff[i] && buff[i] != '\n')
 		i++;
-	line = ft_calloc(i + 2, sizeof(char));
+	line = ft_calloc_gnl(i + 2, sizeof(char));
 	i = 0;
 	while (buff[i] && buff[i] != '\n')
 	{
@@ -74,8 +74,8 @@ char	*ft_read(int fd, char *buff)
 	int		read_size;
 
 	if (!buff)
-		buff = ft_calloc(1, 1);
-	tmp_buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		buff = ft_calloc_gnl(1, 1);
+	tmp_buff = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	read_size = 1;
 	while (read_size > 0)
 	{
@@ -87,7 +87,7 @@ char	*ft_read(int fd, char *buff)
 		}
 		tmp_buff[read_size] = '\0';
 		buff = ft_mod_join(buff, tmp_buff);
-		if (ft_strchr(buff, '\n'))
+		if (ft_strchr_gnl(buff, '\n'))
 		{
 			free(tmp_buff);
 			return (buff);
@@ -112,7 +112,7 @@ char	*ft_get_static(char *buff)
 		free(buff);
 		return (0);
 	}
-	n_buffer = ft_calloc(ft_strlen(buff) - i + 1, sizeof(char));
+	n_buffer = ft_calloc_gnl(ft_strlen(buff) - i + 1, sizeof(char));
 	if (!n_buffer)
 		return (0);
 	i++;

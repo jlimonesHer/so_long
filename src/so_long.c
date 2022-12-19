@@ -6,18 +6,12 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/14 18:59:15 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:35:53 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
-
-enum e_size
-{
-	WIDTH = 800,
-	HEIGHT = 400	
-};
 
 /**
  * @brief Esta funcion limpiara la imagen del PJ
@@ -43,9 +37,9 @@ void	clean_image(mlx_image_t *img)
  */
 void	ft_map_void(t_position posit, char *path)
 {
-	int	x;
-	int	y;
-	mlx_texture_t *texture;
+	int				x;
+	int				y;
+	mlx_texture_t	*texture;
 
 	texture = mlx_load_png(path);
 	y = 0;
@@ -60,7 +54,20 @@ void	ft_map_void(t_position posit, char *path)
 		y += texture->height;
 	}
 }
-/*
+
+/**
+ * @brief Esta funcion escribe las teclas pulsadas en la terminal 
+ * 
+ * @param keydata El numero de la tecla utilizada
+ * @param move Struct de posiciones e imagenes del escenario
+ */
+void	ft_print_key_and_draw(mlx_key_data_t keydata, t_position *move)
+{
+	ft_printf("key: %i\n", keydata.key);
+	ft_map_void(*move, "./img/flat2.png");
+	mlx_draw_texture(move->img, move->texture, move->x, move->y);
+}
+
 void	move_and_perspective(mlx_key_data_t keydata, void *param)
 {
 	t_position		*move;
@@ -86,43 +93,16 @@ void	move_and_perspective(mlx_key_data_t keydata, void *param)
 		move->texture = mlx_load_png("./img/right_flat.png");
 		move->x += 4;
 	}
-	ft_printf("key: %i\n", keydata.key);
-	ft_map_void(*move, "./img/flat2.png");
-	mlx_draw_texture(move->img, move->texture, move->x, move->y);
-}
-*/
-void	move_and_perspective(mlx_key_data_t keydata, void *param)
-{
-	t_position		*move;
-
-	move = (t_position *)param;
-	if (keydata.key == MLX_KEY_W)
-	{
-		move->y -= 4;
-	}
-	else if (keydata.key == MLX_KEY_S)
-	{
-		move->y += 4;
-	}
-	else if (keydata.key == MLX_KEY_A)
-	{
-		move->x -= 4;
-	}
-	else if (keydata.key == MLX_KEY_D)
-	{
-		move->x += 4;
-	}
-	ft_printf("key: %i\n", keydata.key);
-	ft_map_void(*move, "./img/flat2.png");
-	mlx_draw_texture(move->img, move->texture, move->x, move->y);
+	ft_print_key_and_draw(keydata, move);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_position	posit;
-	t_flat		flat_void;
 
-	if (argc == 1)
+	read_map(argv[1]);
+	//printf("map1 = %i\n", map1);
+	if (argc == 2)
 	{	
 		posit.x = 50;
 		posit.y = 50;

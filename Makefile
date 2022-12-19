@@ -6,7 +6,7 @@
 #    By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/09 09:17:57 by jlimones          #+#    #+#              #
-#    Updated: 2022/12/14 12:21:27 by jlimones         ###   ########.fr        #
+#    Updated: 2022/12/19 12:32:34 by jlimones         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ LIB = -lglfw -L /sgoinfre/goinfre/Perso/jlimones/homebrew/Cellar/glfw/3.3.8/lib
 MLX = MLX42/libmlx42.a
 SRC = 	src/so_long.c \
 		src/error_control.c \
+		src/get_map.c
 
 
 all: $(NAME)

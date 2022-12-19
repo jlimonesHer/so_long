@@ -6,11 +6,11 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 12:18:16 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/14 13:16:02 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/19 11:58:01 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../src/so_long.h"
 
 /**
  * @brief funcion para contorlar que el archivo pasado por parametro 

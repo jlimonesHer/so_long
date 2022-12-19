@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 08:40:21 by jlimones          #+#    #+#             */
-/*   Updated: 2022/10/18 18:35:26 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:17:52 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-int	ft_strlen(const char *s)
+int	ft_strlen_gnl(const char *s)
 {
 	int	i;
 
@@ -27,14 +27,14 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*ft_strjoin_gnl(char *s1, char const *s2)
 {
 	int			i;
 	int			j;
 	int			len;
 	char		*str;
 
-	len = ft_strlen(s1) + ft_strlen(s2);
+	len = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str || !s1 || !s2)
 		return (0);
@@ -50,7 +50,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 	return (str);
 }
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr_gnl(const char *str, int c)
 {
 	int		i;
 	char	*ptr;
@@ -68,7 +68,7 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
-void	ft_bzero(void *s, unsigned int n)
+void	ft_bzero_gnl(void *s, unsigned int n)
 {
 	unsigned int	i;
 
@@ -80,7 +80,7 @@ void	ft_bzero(void *s, unsigned int n)
 	}
 }
 
-void	*ft_calloc(unsigned int nmemb, unsigned int size)
+void	*ft_calloc_gnl(unsigned int nmemb, unsigned int size)
 {
 	void			*ptr;
 	unsigned int	total_size;
@@ -93,6 +93,6 @@ void	*ft_calloc(unsigned int nmemb, unsigned int size)
 	ptr = malloc(total_size);
 	if (!ptr)
 		return (0);
-	ft_bzero(ptr, total_size);
+	ft_bzero_gnl(ptr, total_size);
 	return (ptr);
 }
