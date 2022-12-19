@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/19 12:34:53 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:49:46 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ enum e_size
 };
 
 int		ft_control_file(int argc, char **argv);
-int		read_map(char *map);
+void		read_map(char *map);
 #endif

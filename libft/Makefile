@@ -6,7 +6,7 @@
 #    By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 12:35:12 by jlimones          #+#    #+#              #
-#    Updated: 2022/12/14 12:12:35 by jlimones         ###   ########.fr        #
+#    Updated: 2022/12/19 17:44:21 by jlimones         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,10 @@ SRC = ft_bzero.c \
 	  ft_putchar_fd.c \
 	  ft_putstr_fd.c \
 	  ft_putendl_fd.c \
-	  ft_putnbr_fd.c \
+	  ft_putnbr_fd.c
+
+OBJ_GNL = GNL/get_next_line.o \
+		  GNL/get_next_line_utils.o
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -70,9 +73,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C ft_printf
 	@make -C GNL
-	@cp GNL/libftGNL.a $(NAME)
 	@cp ft_printf/libftprintf.a $(NAME)
-	ar crs $(NAME) $(OBJ)
+	ar crs $(NAME) $(OBJ) $(OBJ_GNL)
 	
 %.o: %.c $(HEAD)
 	gcc $(CFLAGS) -c $< -o $@

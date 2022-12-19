@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:56:48 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/19 11:50:50 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:52:37 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -68,5 +71,16 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 int		ft_printf(const char *str, ...);
+
+char	*get_next_line(int fd);
+char	*ft_mod_join(char *buff, char *tmp_buff);
+char	*ft_get_line(char *buff);
+char	*ft_read(int fd, char *buff);
+char	*ft_get_static(char *buff);
+void	*ft_calloc_gnl(unsigned int nmemb, unsigned int size);
+void	ft_bzero_gnl(void *s, unsigned int n);
+char	*ft_strchr_gnl(const char *str, int c);
+char	*ft_strjoin_gnl(char *s1, char const *s2);
+int		ft_strlen_gnl(const char *s);
 
 #endif
