@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/20 07:06:26 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/20 10:35:44 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	main(int argc, char **argv, char **envp)
 	t_position	posit;
 
 	read_map(argv[1]);
-	//printf("map1 = %i\n", map1);
 	if (argc == 2)
 	{	
 		posit.x = 50;
@@ -112,12 +111,8 @@ int	main(int argc, char **argv, char **envp)
 		if (!posit.img)
 			ft_printf("error");
 		mlx_key_hook(posit.mlx, move_and_perspective, &posit);
-		// posit.texture = mlx_load_png("./img/front_flat.png");
-		xpm_t *texture = mlx_load_xpm42("./img/front_flat.xpm42");
-		// if (!posit.texture)
-			//return (-1);
-		posit.texture = &texture->texture;
-		mlx_draw_texture(posit.img, &texture->texture, posit.x, posit.y);
+		posit.texture = mlx_load_png("./img/front_flat.png");
+		mlx_draw_texture(posit.img, posit.texture, posit.x, posit.y);
 		mlx_image_to_window(posit.mlx, posit.img, 0, 0);
 		mlx_loop(posit.mlx);
 	}

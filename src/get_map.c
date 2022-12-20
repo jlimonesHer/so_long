@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/20 09:21:36 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:02:44 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,43 @@ static	int	check_lines(int fd, char *map)
 	}
 	free(line);
 	free(fd_lines);
+	close(fd);
 	return (res);
 }
+
+/**
+ * @brief Comprueba que el mapa sea un rectangulo
+ * 
+ * @param fd recibe el fd del fichero a leer
+ * @param map recibe la ruta al fichero
+ * @return int / Numero de lineas que contiene el mapa
+ */
+static	int	check_rectangle(int fd, char *map)
+{
+	int		len;
+	int		total_line;
+	char	*line;
+
+	total_line = 1;
+	if (!check_lines(fd, map))
+	{
+		fd = open(map, O_RDONLY);
+		line = get_next_line(fd);
+		len = ft_strlen(line);
+		while (line != NULL)
+		{
+			line = get_next_line(fd);
+			total_line++;
+			free(line);
+		}
+		if (total_line == len && total_line < 4)
+			total_line = 0;
+		free(line);
+	}
+	close(fd);
+	return (total_line - 1);
+}
+
 
 /**
  * @brief Esta funcion lee el archivo 
@@ -72,11 +107,8 @@ void	read_map(char *map)
 	char	*buffer;
 
 	fd = open(map, O_RDONLY);
-	if (!check_lines(fd, map))
-		ft_printf("Las lineas son correctas");
+	if (check_rectangle(fd, map) < 4)
+		ft_printf("El mapa no es correcto\n");
 	else
-	 ft_printf("Las lineas NO son correctas");
-	//ft_get_line_fd(fd, map);
-	//buffer = get_next_line(fd);
-	//printf("%s\n", buffer);
+		ft_printf("El mapa es correcto\n");
 }
