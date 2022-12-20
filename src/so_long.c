@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/20 10:35:44 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:47:26 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,21 @@ void	clean_image(mlx_image_t *img)
  * @param posit 
  * @param flat_void 
  */
-void	ft_map_void(t_position posit, char *path)
+void	ft_map_void(t_position *posit)
 {
 	int				x;
 	int				y;
-	mlx_texture_t	*texture;
 
-	texture = mlx_load_png(path);
 	y = 0;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
-			mlx_draw_texture(posit.img, texture, x, y);
-			x += texture->width;
+			mlx_draw_texture(posit->img, posit->textures.img_flat, x, y);
+			x += posit->textures.img_flat->width;
 		}
-		y += texture->height;
+		y += posit->textures.img_flat->height;
 	}
 }
 
@@ -61,11 +59,11 @@ void	ft_map_void(t_position posit, char *path)
  * @param keydata El numero de la tecla utilizada
  * @param move Struct de posiciones e imagenes del escenario
  */
-void	ft_print_key_and_draw(mlx_key_data_t keydata, t_position *move)
+void	ft_print_key_and_draw(mlx_key_data_t keydata, t_position *move, mlx_texture_t *img)
 {
 	ft_printf("key: %i\n", keydata.key);
-	ft_map_void(*move, "./img/flat2.png");
-	mlx_draw_texture(move->img, move->texture, move->x, move->y);
+	ft_map_void(move);
+	mlx_draw_texture(move->img, img, move->x, move->y);
 }
 
 void	move_and_perspective(mlx_key_data_t keydata, void *param)
@@ -75,45 +73,53 @@ void	move_and_perspective(mlx_key_data_t keydata, void *param)
 	move = (t_position *)param;
 	if (keydata.key == MLX_KEY_W)
 	{
-		move->texture = mlx_load_png("./img/back_flat.png");
 		move->y -= 4;
+		ft_print_key_and_draw(keydata, move, move->textures.img_back);
 	}
 	else if (keydata.key == MLX_KEY_S)
 	{
-		move->texture = mlx_load_png("./img/front_flat.png");
 		move->y += 4;
+		ft_print_key_and_draw(keydata, move, move->textures.img_front);
 	}
 	else if (keydata.key == MLX_KEY_A)
 	{
-		move->texture = mlx_load_png("./img/left_flat.png");
 		move->x -= 4;
+		ft_print_key_and_draw(keydata, move, move->textures.img_left);
 	}
 	else if (keydata.key == MLX_KEY_D)
 	{
-		move->texture = mlx_load_png("./img/right_flat.png");
 		move->x += 4;
+		ft_print_key_and_draw(keydata, move, move->textures.img_right);
 	}
-	ft_print_key_and_draw(keydata, move);
 }
 
-int	main(int argc, char **argv, char **envp)
+void	leaks(void)
+{
+	system("leaks so_long");
+}
+
+int	main(int argc, char **argv)
 {
 	t_position	posit;
 
-	read_map(argv[1]);
+	atexit(leaks);
 	if (argc == 2)
 	{	
 		posit.x = 50;
 		posit.y = 50;
+		read_map(argv[1], posit);
 		posit.mlx = mlx_init(WIDTH, HEIGHT, "prueba so_long", false);
 		posit.img = mlx_new_image(posit.mlx, 1000, 1000);
-		ft_map_void(posit, "./img/flat2.png");
+		ft_save_imgs(&posit.textures);
+		ft_map_void(&posit);
 		if (!posit.img)
 			ft_printf("error");
 		mlx_key_hook(posit.mlx, move_and_perspective, &posit);
-		posit.texture = mlx_load_png("./img/front_flat.png");
-		mlx_draw_texture(posit.img, posit.texture, posit.x, posit.y);
+		//posit.texture = mlx_load_png("./img/front_flat.png");
+		mlx_draw_texture(posit.img, posit.textures.img_front, posit.x, posit.y);
 		mlx_image_to_window(posit.mlx, posit.img, 0, 0);
 		mlx_loop(posit.mlx);
+		ft_delete_imgs(&posit.textures);
+		mlx_terminate(posit.mlx);
 	}
 }

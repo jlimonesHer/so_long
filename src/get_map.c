@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/20 12:02:44 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/20 16:58:47 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param map recibe la ruta al fichero
  * @return devuelve 0 si las lineas son iguales o 1 en caso contrario.
  */
-static	int	check_lines(int fd, char *map)
+static	int	check_lines(int fd)
 {
 	int		len;
 	int		len_lines;
@@ -31,18 +31,56 @@ static	int	check_lines(int fd, char *map)
 	line = get_next_line(fd);
 	fd_lines = get_next_line(fd);
 	len = ft_strlen(line);
+	free(line);
 	len_lines = ft_strlen(fd_lines);
 	while (fd_lines != NULL && res == 0)
 	{
 		len_lines = ft_strlen(fd_lines);
+		free(fd_lines);
 		if (len != len_lines)
 			res = 1;
 		fd_lines = get_next_line(fd);
 	}
-	free(line);
 	free(fd_lines);
 	close(fd);
 	return (res);
+}
+
+/**
+ * @brief 
+ * 
+ * @param fd 
+ * @param map 
+ * @param posit 
+ * @return int 
+ */
+static	int	check_obj(int fd, t_position posit)
+{
+	int		c;
+	int		e;
+	int		i;
+	char	*line;
+
+	e = 0;
+	c = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		i = -1;
+		while (line[++i])
+		{
+			if (line[i] == 'E')
+				c++;
+			if (line[i] == 'C')
+				e++;
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	if (c < 0 && e < 0 && posit.x < 0 && posit.y < 0)
+		return (1);
+	return (0);
 }
 
 /**
@@ -52,18 +90,19 @@ static	int	check_lines(int fd, char *map)
  * @param map recibe la ruta al fichero
  * @return int / Numero de lineas que contiene el mapa
  */
-static	int	check_rectangle(int fd, char *map)
+static	int	check_rectangle(int fd, char *map, t_position posit)
 {
 	int		len;
 	int		total_line;
 	char	*line;
 
 	total_line = 1;
-	if (!check_lines(fd, map))
+	if (!check_lines(fd) && check_obj(fd, posit) == 0)
 	{
 		fd = open(map, O_RDONLY);
 		line = get_next_line(fd);
 		len = ft_strlen(line);
+		free(line);
 		while (line != NULL)
 		{
 			line = get_next_line(fd);
@@ -72,26 +111,9 @@ static	int	check_rectangle(int fd, char *map)
 		}
 		if (total_line == len && total_line < 4)
 			total_line = 0;
-		free(line);
 	}
 	close(fd);
 	return (total_line - 1);
-}
-
-
-/**
- * @brief Esta funcion lee el archivo 
- * 
- * @param fd recibe el fd del archivo(mapa)
- * @param map recibe la ruta al archivo que contiene el mapa
- */
-static void	ft_get_line_fd(int fd, char *map)
-{
-	char	*line;
-	int		len;
-	int		i;
-
-	i = 0;
 }
 
 /**
@@ -100,15 +122,11 @@ static void	ft_get_line_fd(int fd, char *map)
  * @param map ruta al archivo .ber recibido por parametro
  * @return int 
  */
-void	read_map(char *map)
+void	read_map(char *map, t_position posit)
 {
 	size_t	fd;
-	size_t	map1;
-	char	*buffer;
 
 	fd = open(map, O_RDONLY);
-	if (check_rectangle(fd, map) < 4)
-		ft_printf("El mapa no es correcto\n");
-	else
-		ft_printf("El mapa es correcto\n");
+	if (check_rectangle(fd, map, posit) < 4)
+		perror("Error");
 }
