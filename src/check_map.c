@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/20 16:58:47 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:55:41 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,14 @@ static	int	check_lines(int fd)
  * @param posit 
  * @return int 
  */
-static	int	check_obj(int fd, t_position posit)
+static	int	check_obj(int fd, char *map, t_img_p posit)
 {
 	int		c;
 	int		e;
 	int		i;
 	char	*line;
 
-	e = 0;
-	c = 0;
+	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -70,15 +69,15 @@ static	int	check_obj(int fd, t_position posit)
 		while (line[++i])
 		{
 			if (line[i] == 'E')
-				c++;
+				e = 1;
 			if (line[i] == 'C')
-				e++;
+				c = 1;
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
-	if (c < 0 && e < 0 && posit.x < 0 && posit.y < 0)
+	if (c < 1 || e < 1 || posit.x < 0 || posit.y < 0)
 		return (1);
 	return (0);
 }
@@ -90,14 +89,14 @@ static	int	check_obj(int fd, t_position posit)
  * @param map recibe la ruta al fichero
  * @return int / Numero de lineas que contiene el mapa
  */
-static	int	check_rectangle(int fd, char *map, t_position posit)
+static	int	check_rectangle(int fd, char *map, t_img_p posit)
 {
 	int		len;
 	int		total_line;
 	char	*line;
 
 	total_line = 1;
-	if (!check_lines(fd) && check_obj(fd, posit) == 0)
+	if (!check_lines(fd) && check_obj(fd, map, posit) == 0)
 	{
 		fd = open(map, O_RDONLY);
 		line = get_next_line(fd);
@@ -122,11 +121,16 @@ static	int	check_rectangle(int fd, char *map, t_position posit)
  * @param map ruta al archivo .ber recibido por parametro
  * @return int 
  */
-void	read_map(char *map, t_position posit)
+void	check_map(char *map, t_img_p posit)
 {
 	size_t	fd;
 
 	fd = open(map, O_RDONLY);
 	if (check_rectangle(fd, map, posit) < 4)
-		perror("Error");
+	{
+		ft_printf("Can't read the map\n");
+		exit(-1);
+		//Funcion para terminar el programa
+	}
+	close(fd);
 }
