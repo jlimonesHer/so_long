@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/11 17:22:56 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:20:00 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,20 +104,20 @@ int	main(int argc, char **argv)
 	atexit(leaks);
 	if (argc == 2)
 	{	
-		posit.x = 55;
-		posit.y = 55;
+		posit.x = 0;
+		posit.y = 0;
 		check_map(argv[1], posit);
-		//posit.mlx = mlx_init(WIDTH, HEIGHT, "So_long", false);
-		//-2-read_and_draw_map(argv[1], posit.textures, &posit);
-		//-3-posit.img = mlx_new_image(posit.mlx, 5000, 5000);
-		//if (!posit.img)
-		//	ft_printf("error\n");
-			ft_printf("error2121\n");
-		ft_generate_window(argv[1], &posit);
+		posit.mlx = mlx_init(5000, 5000, "So_long", true);
+		posit.img = mlx_new_image(posit.mlx, 5000, 5000);
+		if (!posit.img)
+			ft_printf("error\n");
+			//ft_printf("error2121\n");
 		mlx_key_hook(posit.mlx, move_and_perspective, &posit);
 		//posit.textures = mlx_load_png("./img/front_flat.png");
 		//mlx_draw_texture(posit.img, posit.textures.img_front, posit.x, posit.y);
 		mlx_image_to_window(posit.mlx, posit.img, 0, 0);
+		ft_generate_window(argv[1], &posit);
+		//read_and_draw_map(argv[1], posit.textures, &posit);
 		mlx_loop(posit.mlx);
 		ft_delete_imgs(&posit.textures);
 		mlx_terminate(posit.mlx);

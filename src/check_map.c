@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/11 15:31:26 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:23:37 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static	int	check_obj(int fd, char *map, t_img_p posit)
 	int		i;
 	char	*line;
 
+	c = 0;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)
