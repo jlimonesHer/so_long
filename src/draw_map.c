@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:29:27 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/21 17:13:23 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:32:52 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ static	void	ft_draw_pixel_map(char *line, t_img_sprite *img, t_img_p *p)
 	int	i;
 
 	i = 0;
-	p->img = mlx_new_image(p->mlx, 55, 55);
 	ft_save_imgs(img);
+	p->x = 0;
 	while (line[i])
 	{
-		p->x += 55;
 		if (line[i] == '0')
 			mlx_draw_texture(p->img, img->img_flat, p->x, p->y);
 		if (line[i] == '1')
@@ -40,8 +39,10 @@ static	void	ft_draw_pixel_map(char *line, t_img_sprite *img, t_img_p *p)
 			mlx_draw_texture(p->img, img->img_front, p->x, p->y);
 		if (line[i] == 'B')
 			mlx_draw_texture(p->img, img->img_close_door, p->x, p->y);
+		p->x += 55;
 		i++;
 	}
+	printf("aqui3\n");
 	ft_delete_imgs(img);
 }
 
@@ -59,6 +60,8 @@ void	read_and_draw_map(char *map, t_img_sprite img, t_img_p *posit)
 
 	i = 0;
 	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		printf("Erroooooooorrr");
 	line = get_next_line(fd);
 	posit->y = 0;
 	posit->x = 0;

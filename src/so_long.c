@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/21 17:07:03 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:22:56 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	ft_map_void(t_img_p *posit)
 void	ft_print_key(mlx_key_data_t keydata, t_img_p *move, mlx_texture_t *img)
 {
 	ft_printf("key: %i\n", keydata.key);
-	ft_map_void(move);
 	mlx_draw_texture(move->img, img, move->x, move->y);
 }
 
@@ -105,19 +104,19 @@ int	main(int argc, char **argv)
 	atexit(leaks);
 	if (argc == 2)
 	{	
-		posit.x = 50;
-		posit.y = 50;
+		posit.x = 55;
+		posit.y = 55;
 		check_map(argv[1], posit);
-		posit.mlx = mlx_init(WIDTH, HEIGHT, "So_long", false);
-		posit.img = mlx_new_image(posit.mlx, 1000, 1000);
-		ft_save_imgs(&posit.textures);
-		//ft_map_void(&posit);
-		//read_and_draw_map(argv[1], &posit.textures, &posit.img);
-		if (!posit.img)
-			ft_printf("error");
+		//posit.mlx = mlx_init(WIDTH, HEIGHT, "So_long", false);
+		//-2-read_and_draw_map(argv[1], posit.textures, &posit);
+		//-3-posit.img = mlx_new_image(posit.mlx, 5000, 5000);
+		//if (!posit.img)
+		//	ft_printf("error\n");
+			ft_printf("error2121\n");
+		ft_generate_window(argv[1], &posit);
 		mlx_key_hook(posit.mlx, move_and_perspective, &posit);
-		//posit.texture = mlx_load_png("./img/front_flat.png");
-		mlx_draw_texture(posit.img, posit.textures.img_front, posit.x, posit.y);
+		//posit.textures = mlx_load_png("./img/front_flat.png");
+		//mlx_draw_texture(posit.img, posit.textures.img_front, posit.x, posit.y);
 		mlx_image_to_window(posit.mlx, posit.img, 0, 0);
 		mlx_loop(posit.mlx);
 		ft_delete_imgs(&posit.textures);

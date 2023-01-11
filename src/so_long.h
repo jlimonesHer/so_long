@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/21 17:05:03 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:08:16 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ enum e_size
 void		check_map(char *map, t_img_p posit);
 void		ft_delete_imgs(t_img_sprite *img);
 void		ft_save_imgs(t_img_sprite *img);
+void		ft_generate_window(char *map, t_img_p *posit);
 void		read_and_draw_map(char *map, t_img_sprite img, t_img_p *posit);
 #endif
