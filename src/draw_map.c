@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:29:27 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/11 22:00:07 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:31:41 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,13 @@ static	void	ft_draw_pixel_map(char *line, t_img_sprite *img, t_img_p *p)
 	p->x = 0;
 	while (line[i])
 	{
-		if (line[i] == '0')
-			mlx_draw_texture(p->img, img->img_flat, p->x, p->y);
 		if (line[i] == '1')
 			mlx_draw_texture(p->img, img->img_wall, p->x, p->y);
-		if (line[i] == 'C')
-			mlx_draw_texture(p->img, img->img_col, p->x, p->y);
-		if (line[i] == 'E')
-			mlx_draw_texture(p->img, img->img_close_door, p->x, p->y);
-		if (line[i] == 'P')
-			mlx_draw_texture(p->img, img->img_front, p->x, p->y);
-		if (line[i] == 'B')
-			mlx_draw_texture(p->img, img->img_close_door, p->x, p->y);
+		else
+			mlx_draw_texture(p->img, img->img_flat, p->x, p->y);
 		p->x += 55;
 		i++;
 	}
-	//printf("aqui3\n");
-	//ft_delete_imgs(img);
 }
 
 /**
@@ -55,13 +45,11 @@ static	void	ft_draw_pixel_map(char *line, t_img_sprite *img, t_img_p *p)
 void	read_and_draw_map(char *map, t_img_sprite img, t_img_p *posit)
 {
 	int		fd;
-	//int		i;
 	char	*line;
 
-	//i = 0;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		printf("Erroooooooorrr");
+		printf("Error al leer el mapa");
 	line = get_next_line(fd);
 	posit->y = 0;
 	posit->x = 0;
