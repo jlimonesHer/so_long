@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 15:53:17 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:35:08 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,36 @@
  * @param posit 
  * @param flat_void 
  */
-void	ft_map_void(t_img_p *posit)
-{
-	int				x;
-	int				y;
+// void	ft_map_void(t_img_p *posit)
+// {
+// 	int				x;
+// 	int				y;
 
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			mlx_draw_texture(posit->img, posit->textures.img_flat, x, y);
-			x += posit->textures.img_flat->width;
-		}
-		y += posit->textures.img_flat->height;
-	}
-}
+// 	y = 0;
+// 	while (y < HEIGHT)
+// 	{
+// 		x = 0;
+// 		while (x < WIDTH)
+// 		{
+// 			mlx_draw_texture(posit->img, posit->textures.img_flat, x, y);
+// 			x += posit->textures.img_flat->width;
+// 		}
+// 		y += posit->textures.img_flat->height;
+// 	}
+// }
 
 void	leaks(void)
 {
 	system("leaks so_long");
+}
+
+void	ft_init_p_map(char *map, t_img_p *p_map)
+{
+	p_map->width = 55 * ft_lenght_x(map);
+	p_map->height = 55 * ft_lenght_y(map);
+	p_map->x = position_item_x(map, 'P');
+	p_map->y = position_item_y(map, 'P');
+	printf("x: %d, y: %d\n", p_map->x, p_map->y);
 }
 
 int	main(int argc, char **argv)
@@ -57,7 +66,9 @@ int	main(int argc, char **argv)
 	atexit(leaks);
 	if (argc == 2)
 	{	
-		ft_generate_window(argv[1]);
+		t_img_p	p_map;
+		ft_init_p_map(argv[1], &p_map);
+		ft_generate_window(argv[1], &p_map);
 	}
 }
 /**

@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 16:26:18 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:51:02 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,42 +59,25 @@ int	ft_lenght_y(char *map)
 }
 
 /**
- * @brief Calcula las medidas pasadas en el mapa .ber
- * 
- * @param map recibe el mapa .ber
- * @param posit pasamaos la imagenes cargadas
- */
-void	ft_generate_map(char *map, t_img_p *posit)
-{
-	int		width;
-	int		height;
-
-	width = 55 * ft_lenght_x(map);
-	height = 55 * ft_lenght_y(map);
-	read_and_draw_map(map, posit->textures, posit);
-	posit->img = mlx_new_image(posit->mlx, width, height);
-}
-
-/**
  * @brief Esta funcion calcula y muestra las medidas del mapa .ber
  * 
  * @param map Recibe el archivo .ber
  */
-void	ft_generate_window(char *map)
+void	ft_generate_window(char *map, t_img_p *p_map)
 {
-	t_img_p	posit;
-
-	posit.x = (ft_lenght_x(map) * 55);
-	posit.y = (ft_lenght_y(map) * 55);
-	check_map(map, posit);
-	posit.mlx = mlx_init(posit.x - 55, posit.y - 55, "So_long", true);
-	posit.img = mlx_new_image(posit.mlx, posit.x, posit.y);
-	if (!posit.img)
+	p_map->width = (ft_lenght_x(map) * 55);
+	p_map->height = (ft_lenght_y(map) * 55);
+	check_map(map, p_map);
+	ft_save_imgs(&p_map->textures);
+	p_map->mlx = mlx_init(p_map->width - 55, p_map->height - 55,
+			"So_long", true);
+	p_map->img = mlx_new_image(p_map->mlx, p_map->width, p_map->height);
+	if (!p_map->img)
 		ft_printf("error\n");
-	mlx_key_hook(posit.mlx, move_and_perspective, &posit);
-	mlx_image_to_window(posit.mlx, posit.img, 0, 0);
-	ft_generate_map(map, &posit);
-	mlx_loop(posit.mlx);
-	ft_delete_imgs(&posit.textures);
-	mlx_terminate(posit.mlx);
+	mlx_key_hook(p_map->mlx, move_and_perspective, p_map);
+	mlx_image_to_window(p_map->mlx, p_map->img, 0, 0);
+	read_and_draw_map(map, p_map->textures, p_map);
+	mlx_loop(p_map->mlx);
+	ft_delete_imgs(&p_map->textures);
+	mlx_terminate(p_map->mlx);
 }

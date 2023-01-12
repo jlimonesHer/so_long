@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:29:27 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 16:31:41 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:47:34 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,21 @@
  * @param line linea leida por get_next_line
  * @param img struct para cargar los sprites
  */
-static	void	ft_draw_pixel_map(char *line, t_img_sprite *img, t_img_p *p)
+static	void	ft_draw_pixel_map(char *line, t_img_sprite *img,
+		t_img_p *p_map, int y)
 {
 	int	i;
+	int	x;
 
 	i = 0;
-	ft_save_imgs(img);
-	p->x = 0;
+	x = 0;
 	while (line[i])
 	{
 		if (line[i] == '1')
-			mlx_draw_texture(p->img, img->img_wall, p->x, p->y);
+			mlx_draw_texture(p_map->img, img->img_wall, x, y);
 		else
-			mlx_draw_texture(p->img, img->img_flat, p->x, p->y);
-		p->x += 55;
+			mlx_draw_texture(p_map->img, img->img_flat, x, y);
+		x += 55;
 		i++;
 	}
 }
@@ -42,21 +43,21 @@ static	void	ft_draw_pixel_map(char *line, t_img_sprite *img, t_img_p *p)
  * @param map recibe el archivo .ber
  * @param img recibe los sprites para cargarlos
  */
-void	read_and_draw_map(char *map, t_img_sprite img, t_img_p *posit)
+void	read_and_draw_map(char *map, t_img_sprite img, t_img_p *p_map)
 {
 	int		fd;
 	char	*line;
+	int		y;
 
+	y = 0;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		printf("Error al leer el mapa");
 	line = get_next_line(fd);
-	posit->y = 0;
-	posit->x = 0;
 	while (line != NULL)
 	{
-		ft_draw_pixel_map(line, &img, posit);
-		posit->y += 55;
+		ft_draw_pixel_map(line, &img, p_map, y);
+		y += 55;
 		free(line);
 		line = get_next_line(fd);
 	}

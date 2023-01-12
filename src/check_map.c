@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/11 22:23:37 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:51:46 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static	int	check_lines(int fd)
  * @param posit 
  * @return int 
  */
-static	int	check_obj(int fd, char *map, t_img_p posit)
+static	int	check_obj(int fd, char *map, t_img_p *posit)
 {
 	int		c;
 	int		e;
@@ -78,7 +78,7 @@ static	int	check_obj(int fd, char *map, t_img_p posit)
 		line = get_next_line(fd);
 	}
 	free(line);
-	if (c < 1 || e < 1 || posit.x < 0 || posit.y < 0)
+	if (c < 1 || e < 1 || posit->x < 0 || posit->y < 0)
 		return (1);
 	return (0);
 }
@@ -90,7 +90,7 @@ static	int	check_obj(int fd, char *map, t_img_p posit)
  * @param map recibe la ruta al fichero
  * @return int / Numero de lineas que contiene el mapa
  */
-static	int	check_rectangle(int fd, char *map, t_img_p posit)
+static	int	check_rectangle(int fd, char *map, t_img_p *posit)
 {
 	int		len;
 	int		total_line;
@@ -122,7 +122,7 @@ static	int	check_rectangle(int fd, char *map, t_img_p posit)
  * @param map ruta al archivo .ber recibido por parametro
  * @return int 
  */
-void	check_map(char *map, t_img_p posit)
+void	check_map(char *map, t_img_p *posit)
 {
 	size_t	fd;
 
