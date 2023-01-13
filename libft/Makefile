@@ -6,7 +6,7 @@
 #    By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 12:35:12 by jlimones          #+#    #+#              #
-#    Updated: 2022/12/19 17:44:21 by jlimones         ###   ########.fr        #
+#    Updated: 2023/01/13 17:26:29 by jlimones         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,18 +43,9 @@ SRC = ft_bzero.c \
 	  ft_putchar_fd.c \
 	  ft_putstr_fd.c \
 	  ft_putendl_fd.c \
-	  ft_putnbr_fd.c
-
-OBJ_GNL = GNL/get_next_line.o \
-		  GNL/get_next_line_utils.o
-
-CFLAGS = -Wall -Wextra -Werror
-
-NAME = libft.a
-
-
-BONUS = ft_lstnew_bonus.c \
-		ft_lstsize_bonus.c \
+	  ft_putnbr_fd.c \
+	  ft_lstnew_bonus.c \
+      ft_lstsize_bonus.c \
 		ft_lstadd_front_bonus.c \
 		ft_lstlast_bonus.c \
 		ft_lstadd_back_bonus.c \
@@ -63,36 +54,33 @@ BONUS = ft_lstnew_bonus.c \
 		ft_lstiter_bonus.c \
 		ft_lstmap_bonus.c \
 
+SRC_GNL = GNL/get_next_line_bonus.c \
+		  GNL/get_next_line_utils_bonus.c
+
+CFLAGS = -Wall -Wextra -Werror
+
+NAME = libft.a
 
 HEAD = libft.h
 OBJ = $(SRC:.c=.o)
-OBJECTSBONUS = $(BONUS:.c=.o)
+OBJ_GNL = $(SRC_GNL:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(OBJ_GNL)
 	@make -C ft_printf
-	@make -C GNL
 	@cp ft_printf/libftprintf.a $(NAME)
 	ar crs $(NAME) $(OBJ) $(OBJ_GNL)
 	
-%.o: %.c $(HEAD)
-	gcc $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(OBJECTSBONUS)
+	rm -f $(OBJ) $(OBJ_GNL)
 	@make clean -C ft_printf
-	@make clean -C GNL
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(OBJ_GNL)
 	@make fclean -C ft_printf
-	@make fclean -C GNL
 
 re: fclean all
-
-	
-bonus: $(OBJ) $(OBJECTSBONUS)
-		ar crs $(NAME) $(OBJ) $(OBJECTSBONUS)
 
 .PHONY: all, clean, fclean, re, bonus

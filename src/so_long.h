@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 08:18:55 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:18:12 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../MLX42/include/MLX42/MLX42_Input.h"
 # include "../libft/libft.h"
 # include "../libft/ft_printf/ft_printf.h"
-# include "../libft/GNL/get_next_line.h"
 
 /**
  * @brief Struct para guardar las imagenes

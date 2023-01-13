@@ -6,31 +6,12 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 18:51:02 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:03:48 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/**
- * @brief Funcion para contar los caracteres de una linea
- * 
- * @param map recibe el mapa .ber
- * @return int el numero de caracteres
- */
-int	ft_lenght_x(char *map)
-{
-	int		len;
-	int		fd;
-	char	*line;
-
-	fd = open(map, O_RDONLY);
-	line = get_next_line(fd);
-	len = ft_strlen(line);
-	free(line);
-	close(fd);
-	return (len);
-}
 
 /**
  * @brief funcion para contar las lineas de un mapa
@@ -47,6 +28,7 @@ int	ft_lenght_y(char *map)
 	i = 1;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
+	printf("line len_y = %s\n", line);
 	while (line != NULL)
 	{
 		free(line);
@@ -59,15 +41,38 @@ int	ft_lenght_y(char *map)
 }
 
 /**
+ * @brief Funcion para contar los caracteres de una linea
+ * 
+ * @param map recibe el mapa .ber
+ * @return int el numero de caracteres
+ */
+int	ft_lenght_x(char *map)
+{
+	int		len;
+	int		fd;
+	char	*line;
+
+	fd = open(map, O_RDONLY);
+	line = get_next_line(fd);
+	printf("line len_x = %s\n", line);
+	len = ft_strlen(line);
+	free(line);
+	close(fd);
+	return (len);
+}
+
+/**
  * @brief Esta funcion calcula y muestra las medidas del mapa .ber
  * 
  * @param map Recibe el archivo .ber
  */
 void	ft_generate_window(char *map, t_img_p *p_map)
 {
-	p_map->width = (ft_lenght_x(map) * 55);
-	p_map->height = (ft_lenght_y(map) * 55);
-	check_map(map, p_map);
+	p_map->y = position_item_y(map, 'P');
+	p_map->x = position_item_x(map, 'P');
+	p_map->height = 55 * ft_lenght_y(map);
+	p_map->width = 55 * ft_lenght_x(map);
+	//check_map(map, p_map);
 	ft_save_imgs(&p_map->textures);
 	p_map->mlx = mlx_init(p_map->width - 55, p_map->height - 55,
 			"So_long", true);

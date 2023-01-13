@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 18:33:44 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:01:56 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,27 @@ void	ft_close_and_free(int fd, char *line)
  * 
  * @param map mapa .ber
  * @param totem recibe el carracter al que calcular la posicion
- * @return int eje x
+ * @return int eje y
  */
-int	position_item_x(char *map, char totem)
+int	position_item_y(char *map, char totem)
 {
 	size_t	fd;
 	char	*line;
 	int		i;
-	int		x;
 
-	x = 1;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
+	printf("line p_y = %s\n", line);
 	while (line != NULL)
 	{
-		i = 0;
+		i = 1;
 		while (line[i] && line[i] != totem)
 			i++;
 		if (line[i] == totem)
 		{
 			ft_close_and_free(fd, line);
-			return (x);
+			return (i);
 		}
-		x++;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -64,26 +62,30 @@ int	position_item_x(char *map, char totem)
  * 
  * @param map mapa .ber
  * @param totem recibe el carracter al que calcular la posicion
- * @return int eje y
+ * @return int eje x
  */
-int	position_item_y(char *map, char totem)
+int	position_item_x(char *map, char totem)
 {
 	size_t	fd;
 	char	*line;
 	int		i;
+	int		x;
 
+	x = 1;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
+	printf("line p_x = %s\n", line);
 	while (line != NULL)
 	{
-		i = 1;
+		i = 0;
 		while (line[i] && line[i] != totem)
 			i++;
 		if (line[i] == totem)
 		{
 			ft_close_and_free(fd, line);
-			return (i );
+			return (x);
 		}
+		x++;
 		free(line);
 		line = get_next_line(fd);
 	}
