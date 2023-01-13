@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/09 09:17:57 by jlimones          #+#    #+#              #
-#    Updated: 2023/01/12 16:47:54 by jlimones         ###   ########.fr        #
+#    Updated: 2023/01/13 08:04:49 by jlimones         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 LIBFT = libft/libft.a
 FLAGS = -Wall -Werror -Wextra
-LIB = -lglfw -L /sgoinfre/goinfre/Perso/jlimones/homebrew/Cellar/glfw/3.3.8/lib
+#LIB = -lglfw -L /sgoinfre/goinfre/Perso/jlimones/homebrew/Cellar/glfw/3.3.8/lib
+LIB = -lglfw -L /usr/local/Cellar/glfw/3.3.8/lib
 MLX = MLX42/libmlx42.a
 SRC = 	src/so_long.c \
 		src/check_map.c \

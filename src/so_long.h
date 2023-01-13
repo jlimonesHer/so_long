@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 17:54:49 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 08:18:55 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void		read_and_draw_map(char *map, t_img_sprite img, t_img_p *posit);
 void		ft_generate_window(char *map, t_img_p *p_map);
 int			position_item_x(char *map, char totem);
 int			position_item_y(char *map, char totem);
-t_img_p		ft_struc_p_map(char *map);
+void		ft_init_p_map(char *map, t_img_p *p_map);
+void		ft_read_map(char *map);
 #endif
