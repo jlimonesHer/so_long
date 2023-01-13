@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 17:03:48 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:56:42 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_lenght_y(char *map)
 	i = 1;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
-	printf("line len_y = %s\n", line);
 	while (line != NULL)
 	{
 		free(line);
@@ -54,7 +53,6 @@ int	ft_lenght_x(char *map)
 
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
-	printf("line len_x = %s\n", line);
 	len = ft_strlen(line);
 	free(line);
 	close(fd);

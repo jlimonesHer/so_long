@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 08:40:28 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 17:30:33 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:52:52 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	*get_next_line(int fd)
 		return (0);
 	str = ft_get_line(buff[fd]);
 	buff[fd] = ft_get_static(buff[fd]);
-	printf("GNL: %s\n", str);
 	return (str);
 }
 

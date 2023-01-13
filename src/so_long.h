@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 17:18:12 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:53:56 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_img_p
 }	t_img_p;
 
 void		ft_close_and_free(int fd, char *line);
-//void		ft_map_void(t_img_p *posit);
 void		move_and_perspective(mlx_key_data_t keydata, void *param);
 void		check_map(char *map, t_img_p *posit);
 void		ft_delete_imgs(t_img_sprite *img);

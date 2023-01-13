@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:49:05 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 18:54:09 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:56:22 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_key(mlx_key_data_t keydata, t_img_p *p_map, mlx_texture_t *img)
 {
-	ft_printf("key: %i, (%d, %d)\n", keydata.key, p_map->x, p_map->y);
+	ft_printf("key: %in", keydata.key);
 	read_and_draw_map("maps/map3.ber", p_map->textures, p_map);
 	mlx_draw_texture(p_map->img, img, p_map->x, p_map->y);
 }

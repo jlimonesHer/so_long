@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 17:01:56 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:56:33 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	position_item_y(char *map, char totem)
 
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
-	printf("line p_y = %s\n", line);
 	while (line != NULL)
 	{
 		i = 1;
@@ -74,7 +73,6 @@ int	position_item_x(char *map, char totem)
 	x = 1;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
-	printf("line p_x = %s\n", line);
 	while (line != NULL)
 	{
 		i = 0;
