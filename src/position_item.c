@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 17:56:33 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:13:44 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_close_and_free(int fd, char *line)
  * @param totem recibe el carracter al que calcular la posicion
  * @return int eje y
  */
-int	position_item_y(char *map, char totem)
+int	position_item_x(char *map, char totem)
 {
 	size_t	fd;
 	char	*line;
@@ -63,7 +63,7 @@ int	position_item_y(char *map, char totem)
  * @param totem recibe el carracter al que calcular la posicion
  * @return int eje x
  */
-int	position_item_x(char *map, char totem)
+int	position_item_y(char *map, char totem)
 {
 	size_t	fd;
 	char	*line;

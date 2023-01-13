@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:29:27 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 18:47:34 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:15:59 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ static	void	ft_draw_pixel_map(char *line, t_img_sprite *img,
 	x = 0;
 	while (line[i])
 	{
-		if (line[i] == '1')
+		if (line[i] == 'P')
+			mlx_draw_texture(p_map->img, img->img_front, x, y);
+		else if (line[i] == '1')
 			mlx_draw_texture(p_map->img, img->img_wall, x, y);
 		else
 			mlx_draw_texture(p_map->img, img->img_flat, x, y);

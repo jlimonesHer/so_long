@@ -6,12 +6,11 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 17:56:42 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:12:17 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 /**
  * @brief funcion para contar las lineas de un mapa
@@ -66,11 +65,6 @@ int	ft_lenght_x(char *map)
  */
 void	ft_generate_window(char *map, t_img_p *p_map)
 {
-	p_map->y = position_item_y(map, 'P');
-	p_map->x = position_item_x(map, 'P');
-	p_map->height = 55 * ft_lenght_y(map);
-	p_map->width = 55 * ft_lenght_x(map);
-	//check_map(map, p_map);
 	ft_save_imgs(&p_map->textures);
 	p_map->mlx = mlx_init(p_map->width - 55, p_map->height - 55,
 			"So_long", true);

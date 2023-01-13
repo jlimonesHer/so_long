@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 17:53:56 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:36:17 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_img_p
 	int				y;
 	int				height;
 	int				width;
+	char			*map;
+	int				bool_start;
 }	t_img_p;
 
 void		ft_close_and_free(int fd, char *line);
