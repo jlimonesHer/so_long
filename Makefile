@@ -6,7 +6,7 @@
 #    By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/09 09:17:57 by jlimones          #+#    #+#              #
-#    Updated: 2023/01/13 15:54:31 by jlimones         ###   ########.fr        #
+#    Updated: 2023/01/14 09:47:09 by jlimones         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = 	src/so_long.c \
 		src/draw_map.c \
 		src/generate_window.c \
 		src/position_item.c \
+		src/read_map.c \
 		src/move_pj.c
 
 

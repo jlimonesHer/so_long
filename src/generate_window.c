@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/14 08:23:09 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/14 12:16:07 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,17 @@ void	ft_generate_window(char *map, t_img_p *p_map)
 	ft_save_imgs(&p_map->textures);
 	p_map->mlx = mlx_init(PIXEL * p_map->width, PIXEL * p_map->height,
 			"So_long", 1);
-	p_map->img = mlx_new_image(p_map->mlx, PIXEL * p_map->width, PIXEL * p_map->height);
+	p_map->img = mlx_new_image(p_map->mlx, PIXEL * p_map->width,
+			PIXEL * p_map->height);
 	if (!p_map->img)
 		ft_printf("error\n");
+	check_map(map, p_map);
 	mlx_key_hook(p_map->mlx, move_and_perspective, p_map);
 	mlx_image_to_window(p_map->mlx, p_map->img, 0, 0);
 	read_and_draw_map(map, p_map->textures, p_map);
 	mlx_draw_texture(p_map->img, p_map->textures.img_front, p_map->x, p_map->y);
-	printf("height: %d, width: %d\n", p_map->height, p_map->width);
 	mlx_loop(p_map->mlx);
+	ft_delete_map(p_map);
 	ft_delete_imgs(&p_map->textures);
 	mlx_terminate(p_map->mlx);
 }

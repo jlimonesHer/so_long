@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 08:06:11 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/14 08:16:03 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/14 13:09:19 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static char	*ft_change_end_string(char *str)
 {
 	int		i;
 
-	while (str[i])
+	i = 0;
+	while (str && str[i])
 	{
 		if (str[i] == '\n')
 		{
@@ -31,6 +32,7 @@ static char	*ft_change_end_string(char *str)
 		}
 		i++;
 	}
+	return (str);
 }
 
 /**
@@ -38,16 +40,26 @@ static char	*ft_change_end_string(char *str)
  * 
  * @param map recibe el mapa.ber
  */
-void	ft_read_map(char *map)
+void	ft_read_map(char *file, t_img_p *p_map)
 {
 	int		fd;
 	int		i;
-	char	**m_map;
 
-	m_map = malloc(sizeof(char *) * ft_lenght_y(map));
+	p_map->map = malloc(sizeof(char *) * p_map->height);
 	i = 0;
-	fd = open(map, O_RDONLY);
-	m_map[i] = get_next_line(fd);
-	while (m_map[i] != NULL)
-		m_map[++i] = ft_change_end_string(get_next_line(fd));
+	fd = open(file, O_RDONLY);
+	p_map->map[i] = ft_change_end_string(get_next_line(fd));
+	while (p_map->map[i] != NULL)
+		p_map->map[++i] = ft_change_end_string(get_next_line(fd));
+}
+
+
+void	ft_delete_map(t_img_p *p_map)
+{
+	int	i;
+
+	i = 0;
+	while (i < p_map->height)
+		free(p_map->map[i++]);
+	free(p_map->map);
 }

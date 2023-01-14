@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/14 08:21:13 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/14 10:19:34 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_init_p_map(char *file, t_img_p *p_map)
 	p_map->x = position_item_x(file, 'P') * PIXEL;
 	p_map->height = ft_lenght_y(file);
 	p_map->width = ft_lenght_x(file);
+	ft_read_map(file, p_map);
 }
 
 int	main(int argc, char **argv)
