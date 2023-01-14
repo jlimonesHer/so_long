@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 18:36:35 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/14 08:21:13 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ void	leaks(void)
 	system("leaks so_long");
 }
 
-void	ft_init_p_map(char *map, t_img_p *p_map)
+void	ft_init_p_map(char *file, t_img_p *p_map)
 {
-	p_map->map = map;
-	p_map->bool_start = 1;
-	p_map->y = position_item_y(map, 'P') * 55 - 55;
-	p_map->x = position_item_x(map, 'P') * 55;
-	//printf("x : %i, y: %i\n", p_map->x , p_map->y);
-	p_map->height = 55 * ft_lenght_y(map);
-	p_map->width = 55 * ft_lenght_x(map);
+	p_map->file = file;
+	p_map->y = position_item_y(file, 'P') * PIXEL - PIXEL;
+	p_map->x = position_item_x(file, 'P') * PIXEL;
+	p_map->height = ft_lenght_y(file);
+	p_map->width = ft_lenght_x(file);
 }
 
 int	main(int argc, char **argv)
