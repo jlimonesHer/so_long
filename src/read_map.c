@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 08:06:11 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/14 13:09:19 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 12:46:16 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,17 @@ void	ft_read_map(char *file, t_img_p *p_map)
 	p_map->map = malloc(sizeof(char *) * p_map->height);
 	i = 0;
 	fd = open(file, O_RDONLY);
+	ft_error_fd(fd);
 	p_map->map[i] = ft_change_end_string(get_next_line(fd));
-	while (p_map->map[i] != NULL)
+	while (p_map->map[i] != 0)
 		p_map->map[++i] = ft_change_end_string(get_next_line(fd));
 }
 
-
+/**
+ * @brief funcion para liberrar la matriz creada para el mapa
+ * 
+ * @param p_map mapa .ber
+ */
 void	ft_delete_map(t_img_p *p_map)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:29:27 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/14 08:22:53 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 12:46:31 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ void	read_and_draw_map(char *file, t_img_sprite img, t_img_p *p_map)
 
 	y = 0;
 	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		printf("Error al leer el mapa");
+	ft_error_fd(fd);
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (line != 0)
 	{
 		ft_draw_pixel_map(line, &img, p_map, y);
 		y += PIXEL;

@@ -6,11 +6,17 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:01:06 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 18:11:15 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 12:42:58 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+// static	void	ft_error_img(t_img_sprite *img)
+// {
+// 	if (!img->img_back)
+// 		ft_error("Falla al cargar una imagen\n");
+// }
 
 /**
  * @brief Funcion para guardar las imagenes en una struck
@@ -27,7 +33,6 @@ void	ft_save_imgs(t_img_sprite *img)
 	img->img_wall = mlx_load_png("./img/wall.png");
 	img->img_col = mlx_load_png("./img/key.png");
 	img->img_enemy = mlx_load_png("./img/enemy.png");
-
 }
 
 /**
@@ -35,8 +40,6 @@ void	ft_save_imgs(t_img_sprite *img)
  */
 void	ft_delete_imgs(t_img_sprite *img)
 {
-	
-	
 	mlx_delete_texture(img->img_front);
 	mlx_delete_texture(img->img_back);
 	mlx_delete_texture(img->img_left);
