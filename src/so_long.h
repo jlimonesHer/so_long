@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 09:54:56 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 11:52:50 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ int			position_item_y(char *file, char totem);
 void		ft_init_p_map(char *file, t_img_p *p_map);
 void		ft_read_map(char *file, t_img_p *p_map);
 void		ft_delete_map(t_img_p *p_map);
+void		ft_error(t_img_p *p_map, char *error);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 11:33:30 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 12:06:24 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,7 @@ static int	ft_check_items(t_img_p *p_map, int p, int e, int c)
 
 void	check_map(t_img_p *p_map)
 {
-	if (check_lines_matrix(p_map) && check_wall_up_donw(p_map)
-		&& check_wall_left_right(p_map) && ft_check_items(p_map, 0, 0, 0))
-		printf("El mapa es correcto\n");
-	else
-		printf("El mapa no es correcto\n");
-	//printf("check_wall_up_m = %i\n", check_wall_up_donw(p_map));
-	//printf("check_wall_left_m = %i\n", check_wall_left_right(p_map));
-	//printf("check_lines_m = %zu\n", check_lines_matrix(p_map));
-	//printf("check_items_m = %i\n", ft_check_items(p_map, 0, 0, 0));
+	if (!check_lines_matrix(p_map) || !check_wall_up_donw(p_map)
+		|| !check_wall_left_right(p_map) || !ft_check_items(p_map, 0, 0, 0))
+		ft_error(p_map, "Ha ocurrido algun fallo al leer el mapa\n");
 }

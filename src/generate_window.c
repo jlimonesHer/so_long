@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 09:55:16 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 12:01:35 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ void	ft_generate_window(char *map, t_img_p *p_map)
 	ft_delete_map(p_map);
 	ft_delete_imgs(&p_map->textures);
 	mlx_terminate(p_map->mlx);
+	ft_error(p_map, "El programa se ha cerrado correctamente\n");
 }
