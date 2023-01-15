@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/14 12:16:07 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 09:55:16 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_generate_window(char *map, t_img_p *p_map)
 			PIXEL * p_map->height);
 	if (!p_map->img)
 		ft_printf("error\n");
-	check_map(map, p_map);
+	check_map(p_map);
 	mlx_key_hook(p_map->mlx, move_and_perspective, p_map);
 	mlx_image_to_window(p_map->mlx, p_map->img, 0, 0);
 	read_and_draw_map(map, p_map->textures, p_map);

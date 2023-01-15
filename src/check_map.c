@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/14 13:48:04 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 11:33:30 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief Comprueba que todas las lineas tengan el mismo largo
  * 
  * @param p_map struck con las variables iniciadas
- * @return size_t 
+ * @return size_t 1 si es correcto ,0 si no lo es
  */
 static	size_t	check_lines_matrix(t_img_p *p_map)
 {
@@ -27,74 +27,93 @@ static	size_t	check_lines_matrix(t_img_p *p_map)
 	len = ft_strlen(p_map->map[0]);
 	while (i < p_map->height && len == ft_strlen(p_map->map[i]))
 		i++;
-	if (i != p_map->height)
+	if (i == p_map->height)
 		return (1);
 	return (0);
 }
 
-static int	check_wall(t_img_p *p_map)
+/**
+ * @brief Comprueba que las lineas laterales sean muros
+ * 
+ * @param p_map struck con variables inicializadas en ft_init_p_map
+ * @return int size_t 1 si es correcto ,0 si no lo es
+ */
+static int	check_wall_up_donw(t_img_p *p_map)
 {
 	int	i;
 
 	i = 0;
-	printf("map[0] = %s, map[height = %s\n", p_map->map[0], p_map->map[p_map->height - 1]);
 	while (p_map->map[0][i] == '1' && p_map->map[p_map->height - 1][i] == '1')
 		i++;
-		return(printf("largo %i", i));
+	if (i == p_map->width)
+		return (1);
+	return (0);
 }
 
 /**
- * @brief Comprueba que el mapa sea un rectangulo
+ * @brief comprueba que la primera fila y la ultima sean muros
  * 
- * @param fd recibe el fd del fichero a leer
- * @param map recibe la ruta al fichero
- * @return int / Numero de lineas que contiene el mapa
+ * @param p_map  struck con variables inicializadas en ft_init_p_map
+ * @return int size_t 1 si es correcto ,0 si no lo es
  */
-// static	int	check_rectangle(int fd, char *map, t_img_p *p_map)
-// {
-// 	int		len;
-// 	int		total_line;
-// 	char	*line;
+static int	check_wall_left_right(t_img_p *p_map)
+{
+	int	i;
 
-// 	total_line = 1;
-// 	if (!(check_lines_matrix(p_map) == 1) && (check_obj(fd, map, p_map) == 0))
-// 	{
-// 		fd = open(map, O_RDONLY);
-// 		line = get_next_line(fd);
-// 		len = ft_strlen(line);
-// 		free(line);
-// 		while (line != NULL)
-// 		{
-// 			line = get_next_line(fd);
-// 			total_line++;
-// 			free(line);
-// 		}
-// 		if (total_line == len && total_line < 4)
-// 			total_line = 0;
-// 	}
-// 	close(fd);
-// 	return (total_line - 1);
-// }
+	i = 0;
+	while (p_map->height > i && p_map->map[i][p_map->width - 1] == '1'
+			&& p_map->map[i][0] == '1')
+		i++;
+	if (i == p_map->height)
+		return (1);
+	return (0);
+}
 
 /**
- * @brief Funcion para leer el mapa
+ * @brief Comprueba que al menos 1 objeto de cada tipo
  * 
- * @param map ruta al archivo .ber recibido por parametro
- * @return int 
+ * @param p_map struck con variables inicializadas en ft_init_p_map
+ * @param p posiciones iniciales disponibles en el mapa
+ * @param e Salidas disponibles en el mapa
+ * @param c coleccionables disponibles en el mapa
+ * @return int size_t 1 si es correcto ,0 si no lo es
  */
-void	check_map(char *file, t_img_p *p_map)
+static int	ft_check_items(t_img_p *p_map, int p, int e, int c)
 {
-	size_t	fd;
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
+	while (p_map->height > i)
+	{
+		j = 0;
+		while (p_map->map[i][j])
+		{
+			if (p_map->map[i][j] == 'P')
+				p++;
+			else if (p_map->map[i][j] == 'E')
+				e++;
+			else if (p_map->map[i][j] == 'C')
+				c++;
+			j++;
+		}
+		i++;
+	}
+	if (p > 0 && e > 0 && c > 0)
+		return (1);
+	return (0);
+}
 
-	fd = open(file, O_RDONLY);
-	check_wall(p_map);
-	printf("check_lines_m = %zu\n", check_lines_matrix(p_map));
-	// if (check_rectangle(fd, file, p_map) < 4)
-	// {
-	// 	ft_printf("Can't read the map\n");
-	// 	exit(-1);
-	// 	//Funcion para terminar el programa
-	// }
-	close(fd);
+void	check_map(t_img_p *p_map)
+{
+	if (check_lines_matrix(p_map) && check_wall_up_donw(p_map)
+		&& check_wall_left_right(p_map) && ft_check_items(p_map, 0, 0, 0))
+		printf("El mapa es correcto\n");
+	else
+		printf("El mapa no es correcto\n");
+	//printf("check_wall_up_m = %i\n", check_wall_up_donw(p_map));
+	//printf("check_wall_left_m = %i\n", check_wall_left_right(p_map));
+	//printf("check_lines_m = %zu\n", check_lines_matrix(p_map));
+	//printf("check_items_m = %i\n", ft_check_items(p_map, 0, 0, 0));
 }
