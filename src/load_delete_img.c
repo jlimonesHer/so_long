@@ -6,17 +6,19 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:01:06 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 12:42:58 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/15 12:58:52 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// static	void	ft_error_img(t_img_sprite *img)
-// {
-// 	if (!img->img_back)
-// 		ft_error("Falla al cargar una imagen\n");
-// }
+static	void	ft_error_img(t_img_sprite *img)
+{
+	if (!img->img_front || !img->img_back || !img->img_left || !img->img_right
+		|| !img->img_flat || !img->img_close_door || !img->img_open_door
+		|| !img->img_wall || !img->img_col || !img->img_enemy)
+		ft_error("Falla al cargar una imagen\n");
+}
 
 /**
  * @brief Funcion para guardar las imagenes en una struck
@@ -33,6 +35,7 @@ void	ft_save_imgs(t_img_sprite *img)
 	img->img_wall = mlx_load_png("./img/wall.png");
 	img->img_col = mlx_load_png("./img/key.png");
 	img->img_enemy = mlx_load_png("./img/enemy.png");
+	ft_error_img(img);
 }
 
 /**
