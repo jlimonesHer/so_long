@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 13:23:04 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:08:50 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_img_p
 	int				y;
 	int				height;
 	int				width;
+	int				v_bool;
 }	t_img_p;
 
 void		move_and_perspective(mlx_key_data_t keydata, void *param);

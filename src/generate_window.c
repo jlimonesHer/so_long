@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 13:22:23 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:28:25 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,49 @@ int	ft_lenght_x(char *map)
 	return (len);
 }
 
+// static	int	ft_get_col(t_img_p *p_map)
+// {
+// 	if (p_map->x == p_map->p_items.x_col && p_map->y == p_map->p_items.y_col)
+// 	{
+// 		mlx_draw_texture(p_map->img, p_map->textures.img_open_door,
+// 			p_map->p_items.x_door,
+// 			p_map->p_items.y_door);
+// 		mlx_draw_texture(p_map->img, p_map->textures.img_flat,
+// 			p_map->p_items.x_col,
+// 			p_map->p_items.y_col);
+// 		return (0);
+// 	}
+// 	return (1);
+// }
+
+/**
+ * @brief Pinta los objetos del juego excepto el jugador
+ * si has cogido el coleccionable abre la puerta y desaparece el coleccionable
+ * @param p_map struck con variables inicializadas
+ */
 void	ft_draw_items(t_img_p *p_map)
 {
 	mlx_draw_texture(p_map->img, p_map->textures.img_bad, p_map->p_items.x_bad,
 		p_map->p_items.y_bad);
+	if (p_map->x == p_map->p_items.x_col
+		&& p_map->y == p_map->p_items.y_col)
+	{
+		p_map->textures.img_close_door = p_map->textures.img_open_door;
+		p_map->textures.img_col = p_map->textures.img_flat;
+	}
 	mlx_draw_texture(p_map->img, p_map->textures.img_close_door,
 		p_map->p_items.x_door,
 		p_map->p_items.y_door);
-	mlx_draw_texture(p_map->img, p_map->textures.img_col, p_map->p_items.x_col,
+	mlx_draw_texture(p_map->img, p_map->textures.img_col,
+		p_map->p_items.x_col,
 		p_map->p_items.y_col);
 }
 
 /**
- * @brief Esta funcion calcula y muestra las medidas del mapa .ber
+ * @brief carga las funciones para iniciar el juego
  * 
- * @param map Recibe el archivo .ber
+ * @param map recible el strin con la ruta del mapa
+ * @param p_map recibe la estructura con las variables inicializadas
  */
 void	ft_generate_window(char *map, t_img_p *p_map)
 {

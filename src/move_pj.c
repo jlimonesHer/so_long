@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:19:13 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 13:31:32 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:39:31 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,4 @@ void	move_and_perspective(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_D
 		&& !ft_is_wall(p_map, p_map->x + PIXEL, p_map->y, 'h'))
 		ft_print_key(keydata, p_map, p_map->textures.img_right);
-}
-
-void	ft_get_col(t_img_p *p_map)
-{
-	if (p_map->x == p_map->p_items.x_col && p_map->y == p_map->p_items.y_col)
-	{
-			
-	}
 }
