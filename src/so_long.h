@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 12:07:33 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:23:04 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		ft_init_p_map(char *file, t_img_p *p_map);
 void		ft_init_item(t_img_p *p_map);
 void		ft_read_map(char *file, t_img_p *p_map);
 void		ft_delete_map(t_img_p *p_map);
+void		ft_draw_items(t_img_p *p_map);
 void		ft_error(char *error);
 void		ft_error_fd(int fd);
 #endif

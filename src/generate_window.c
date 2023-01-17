@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 13:05:51 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:22:23 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ int	ft_lenght_x(char *map)
 	return (len);
 }
 
-static	void	ft_draw_items(t_img_p *p_map)
+void	ft_draw_items(t_img_p *p_map)
 {
-	//ft_init_item(p_map);
-	mlx_draw_texture(p_map->img, p_map->textures.img_front, p_map->x, p_map->y);
 	mlx_draw_texture(p_map->img, p_map->textures.img_bad, p_map->p_items.x_bad,
 		p_map->p_items.y_bad);
 	mlx_draw_texture(p_map->img, p_map->textures.img_close_door,
@@ -91,6 +89,7 @@ void	ft_generate_window(char *map, t_img_p *p_map)
 	mlx_key_hook(p_map->mlx, move_and_perspective, p_map);
 	mlx_image_to_window(p_map->mlx, p_map->img, 0, 0);
 	read_and_draw_map(map, p_map->textures, p_map);
+	mlx_draw_texture(p_map->img, p_map->textures.img_front, p_map->x, p_map->y);
 	ft_draw_items(p_map);
 	printf("y_P = %i, x_P = %i\n", p_map->y, p_map->x);
 	mlx_loop(p_map->mlx);
