@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_pj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:19:13 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 12:19:18 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:07:46 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	ft_print_key(mlx_key_data_t keydata, t_img_p *p_map, mlx_texture_t *img)
 {
 	ft_printf("key: %i\n", keydata.key);
 	if (keydata.key == MLX_KEY_W)
-		p_map->y -= 11;
+		p_map->y -= MOVE;
 	else if (keydata.key == MLX_KEY_S)
-		p_map->y += 11;
+		p_map->y += MOVE;
 	else if (keydata.key == MLX_KEY_A)
-		p_map->x -= 11;
+		p_map->x -= MOVE;
 	else if (keydata.key == MLX_KEY_D)
-		p_map->x += 11;
+		p_map->x += MOVE;
 	read_and_draw_map(p_map->file, p_map->textures, p_map);
 	mlx_draw_texture(p_map->img, img, p_map->x, p_map->y);
 }

@@ -3,92 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   position_item.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 12:44:53 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:06:56 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /**
- * @brief Libera memoria y cierra el archivo
+ * @brief localiza el eje y objeto pasado por parametro
  * 
- * @param fd numero del file descriptor
- * @param line linea leida por el get_next_line
+ * @param p_map struck con variables inicializadas
+ * @param obj objeto a localizar
+ * @return int posicion  en el mapa
  */
-void	ft_close_and_free(int fd, char *line)
+int	position_item_y_matrix(t_img_p *p_map, char obj)
 {
-	free(line);
-	close(fd);
-}
+	int	x;
+	int	y;
 
-/**
- * @brief Determina la posicion en el eje x en el mapa
- * 
- * @param map mapa .ber
- * @param obj recibe el carracter al que calcular la posicion
- * @return int eje y
- */
-int	position_item_x(char *map, char obj)
-{
-	size_t	fd;
-	char	*line;
-	int		i;
-
-	fd = open(map, O_RDONLY);
-	ft_error_fd(fd);
-	line = get_next_line(fd);
-	while (line != 0)
+	y = 0;
+	while (y < p_map->height && p_map->map[y][x] != obj)
 	{
-		i = 1;
-		while (line[i] && line[i] != obj)
-			i++;
-		if (line[i] == obj)
-		{
-			ft_close_and_free(fd, line);
-			return (i);
-		}
-		free(line);
-		line = get_next_line(fd);
+		x = 0;
+		while (x < p_map->width && p_map->map[y][x] != obj)
+			x++;
+		if (p_map->map[y][x] != obj)
+			y++;
 	}
-	ft_close_and_free(fd, line);
+	printf("obj = %c, y = %i\n", obj, y);
+	if (p_map->map[y][x] == obj)
+		return (y + 1);
 	return (0);
 }
 
 /**
- * @brief Determina la posicion en el eje x en el mapa
+ * @brief localiza el eje x objeto pasado por parametro
  * 
- * @param map mapa .ber
- * @param obj recibe el carracter al que calcular la posicion
- * @return int eje x
+ * @param p_map struck con variables inicializadas
+ * @param obj objeto a localizar
+ * @return int posicion x en el mapa
  */
-int	position_item_y(char *map, char obj)
+int	position_item_x_matrix(t_img_p *p_map, char obj)
 {
-	size_t	fd;
-	char	*line;
-	int		i;
-	int		x;
+	int	x;
+	int	y;
 
-	x = 1;
-	fd = open(map, O_RDONLY);
-	ft_error_fd(fd);
-	line = get_next_line(fd);
-	while (line != 0)
-	{
-		i = 0;
-		while (line[i] && line[i] != obj)
-			i++;
-		if (line[i] == obj)
-		{
-			ft_close_and_free(fd, line);
-			return (x);
-		}
+	if (obj == 'P')
+		y = (p_map->y) / PIXEL;
+	if (obj == 'C')
+		y = (p_map->p_items.y_col) / PIXEL;
+	if (obj == 'B')
+		y = (p_map->p_items.y_bad) / PIXEL;
+	if (obj == 'E')
+		y = (p_map->p_items.y_door) / PIXEL;
+	x = 0;
+	while (x < p_map->width && p_map->map[y][x] != obj)
 		x++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	ft_close_and_free(fd, line);
+	printf("obj = %c, x = %i\n", obj, x);
+	if (p_map->map[y][x] == obj)
+		return (x);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 12:45:21 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:05:51 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ int	ft_lenght_x(char *map)
 	return (len);
 }
 
+static	void	ft_draw_items(t_img_p *p_map)
+{
+	//ft_init_item(p_map);
+	mlx_draw_texture(p_map->img, p_map->textures.img_front, p_map->x, p_map->y);
+	mlx_draw_texture(p_map->img, p_map->textures.img_bad, p_map->p_items.x_bad,
+		p_map->p_items.y_bad);
+	mlx_draw_texture(p_map->img, p_map->textures.img_close_door,
+		p_map->p_items.x_door,
+		p_map->p_items.y_door);
+	mlx_draw_texture(p_map->img, p_map->textures.img_col, p_map->p_items.x_col,
+		p_map->p_items.y_col);
+}
+
 /**
  * @brief Esta funcion calcula y muestra las medidas del mapa .ber
  * 
@@ -74,11 +87,12 @@ void	ft_generate_window(char *map, t_img_p *p_map)
 	p_map->img = mlx_new_image(p_map->mlx, PIXEL * p_map->width,
 			PIXEL * p_map->height);
 	if (!p_map->img)
-		ft_printf("error\n");
+		ft_error("Error al cargar la ventana");
 	mlx_key_hook(p_map->mlx, move_and_perspective, p_map);
 	mlx_image_to_window(p_map->mlx, p_map->img, 0, 0);
 	read_and_draw_map(map, p_map->textures, p_map);
-	mlx_draw_texture(p_map->img, p_map->textures.img_front, p_map->x, p_map->y);
+	ft_draw_items(p_map);
+	printf("y_P = %i, x_P = %i\n", p_map->y, p_map->x);
 	mlx_loop(p_map->mlx);
 	ft_delete_map(p_map);
 	ft_delete_imgs(&p_map->textures);
