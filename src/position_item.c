@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   position_item.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 13:06:56 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:59:27 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	position_item_y_matrix(t_img_p *p_map, char obj)
 		if (p_map->map[y][x] != obj)
 			y++;
 	}
-	printf("obj = %c, y = %i\n", obj, y);
 	if (p_map->map[y][x] == obj)
 		return (y + 1);
 	return (0);
@@ -62,7 +61,6 @@ int	position_item_x_matrix(t_img_p *p_map, char obj)
 	x = 0;
 	while (x < p_map->width && p_map->map[y][x] != obj)
 		x++;
-	printf("obj = %c, x = %i\n", obj, x);
 	if (p_map->map[y][x] == obj)
 		return (x);
 	return (0);

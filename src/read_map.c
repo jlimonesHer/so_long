@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 08:06:11 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 12:46:16 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/21 15:00:26 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @param str  recibe la cadena a modificar
  * @return char* 
  */
-static char	*ft_change_end_string(char *str)
+char	*ft_change_end_string(char *str)
 {
 	int		i;
 
@@ -55,7 +55,7 @@ void	ft_read_map(char *file, t_img_p *p_map)
 }
 
 /**
- * @brief funcion para liberrar la matriz creada para el mapa
+ * @brief funcion para liberar la matriz creada para el mapa
  * 
  * @param p_map mapa .ber
  */
