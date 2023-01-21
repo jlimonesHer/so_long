@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_pj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:19:13 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 17:37:22 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:40:07 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,25 @@
  * @param p_map 
  * @param img 
  */
+
 void	ft_print_key(mlx_key_data_t keydata, t_img_p *p_map, mlx_texture_t *img)
 {
-	ft_printf("key: %i\n", keydata.key);
-	if (keydata.key == MLX_KEY_W)
+	char	*str;
+
+	str = ft_itoa(p_map->count++);
+	if (p_map->str_img)
+		mlx_delete_image(p_map->mlx, p_map->str_img);
+	p_map->str_img = mlx_put_string(p_map->mlx, str, 55, 55);
+	free(str);
+	if (keydata.action != 0)
+		ft_printf("key: %i, action: %d\n", p_map->count++, keydata.action);
+	if (keydata.key == MLX_KEY_W && keydata.action != 0)
 		p_map->y -= MOVE;
-	else if (keydata.key == MLX_KEY_S)
+	else if (keydata.key == MLX_KEY_S && keydata.action != 0)
 		p_map->y += MOVE;
-	else if (keydata.key == MLX_KEY_A)
+	else if (keydata.key == MLX_KEY_A && keydata.action != 0)
 		p_map->x -= MOVE;
-	else if (keydata.key == MLX_KEY_D)
+	else if (keydata.key == MLX_KEY_D && keydata.action != 0)
 		p_map->x += MOVE;
 	read_and_draw_map(p_map->file, p_map->textures, p_map);
 	ft_draw_items(p_map);

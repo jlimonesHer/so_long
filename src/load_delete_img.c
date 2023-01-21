@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_delete_img.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:01:06 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 13:00:55 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:41:42 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
