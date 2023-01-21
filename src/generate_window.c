@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/21 15:15:49 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:57:41 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,10 @@ int	ft_lenght_x(char *map)
 	return (len);
 }
 
-// static	int	ft_get_col(t_img_p *p_map)
-// {
-// 	if (p_map->x == p_map->p_items.x_col && p_map->y == p_map->p_items.y_col)
-// 	{
-// 		mlx_draw_texture(p_map->img, p_map->textures.img_open_door,
-// 			p_map->p_items.x_door,
-// 			p_map->p_items.y_door);
-// 		mlx_draw_texture(p_map->img, p_map->textures.img_flat,
-// 			p_map->p_items.x_col,
-// 			p_map->p_items.y_col);
-// 		return (0);
-// 	}
-// 	return (1);
-// }
+static	void	ft_terminate_play(t_img_p *p_map)
+{
+	
+}
 
 /**
  * @brief Pinta los objetos del juego excepto el jugador
@@ -86,6 +76,9 @@ void	ft_draw_items(t_img_p *p_map)
 		p_map->p_items.y_bad);
 	if (p_map->x == p_map->p_items.x_col && p_map->y == p_map->p_items.y_col)
 		p_map->open = 1;
+	if (p_map->x == p_map->p_items.x_door && p_map->y == p_map->p_items.y_door
+		|| p_map->open == 1)
+		ft_terminate_play(p_map);
 	if (p_map->open)
 	{
 		mlx_draw_texture(p_map->img, p_map->textures.img_open_door,
