@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:19:13 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 13:39:31 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:37:22 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	ft_is_wall(t_img_p *p_map, int pix_x, int pix_y, char eje)
  * @param keydata recibe la key de las teclas
  * @param param parametro vacio
  */
-void	move_and_perspective(mlx_key_data_t keydata, void *param)
+void	move_and_perspective_p(mlx_key_data_t keydata, void *param)
 {
 	t_img_p		*p_map;
 

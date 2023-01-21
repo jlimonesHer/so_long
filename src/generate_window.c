@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 17:28:25 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:37:27 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ft_generate_window(char *map, t_img_p *p_map)
 			PIXEL * p_map->height);
 	if (!p_map->img)
 		ft_error("Error al cargar la ventana");
-	mlx_key_hook(p_map->mlx, move_and_perspective, p_map);
+	mlx_key_hook(p_map->mlx, move_and_perspective_p, p_map);
 	mlx_image_to_window(p_map->mlx, p_map->img, 0, 0);
 	read_and_draw_map(map, p_map->textures, p_map);
 	mlx_draw_texture(p_map->img, p_map->textures.img_front, p_map->x, p_map->y);
