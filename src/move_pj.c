@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:19:13 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/21 16:40:07 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:51:46 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,20 @@ void	move_and_perspective_p(mlx_key_data_t keydata, void *param)
 
 	p_map = (t_img_p *)param;
 	ft_key_scp(keydata, p_map);
-	if (keydata.key == MLX_KEY_W
-		&& !ft_is_wall(p_map, p_map->x, p_map->y - 11, 'v'))
-		ft_print_key(keydata, p_map, p_map->textures.img_back);
-	else if (keydata.key == MLX_KEY_S
-		&& !ft_is_wall(p_map, p_map->x, p_map->y + PIXEL, 'v'))
-		ft_print_key(keydata, p_map, p_map->textures.img_front);
-	else if (keydata.key == MLX_KEY_A
-		&& !ft_is_wall(p_map, p_map->x - 11, p_map->y, 'h'))
-		ft_print_key(keydata, p_map, p_map->textures.img_left);
-	else if (keydata.key == MLX_KEY_D
-		&& !ft_is_wall(p_map, p_map->x + PIXEL, p_map->y, 'h'))
-		ft_print_key(keydata, p_map, p_map->textures.img_right);
+	if (!(p_map->x == p_map->p_items.x_door && p_map->y == p_map->p_items.y_door
+			&& p_map->open == 1) && !(p_map->x == p_map->p_items.x_bad && p_map->y == p_map->p_items.y_bad))
+	{
+		if (keydata.key == MLX_KEY_W
+			&& !ft_is_wall(p_map, p_map->x, p_map->y - 11, 'v'))
+			ft_print_key(keydata, p_map, p_map->textures.img_back);
+		else if (keydata.key == MLX_KEY_S
+			&& !ft_is_wall(p_map, p_map->x, p_map->y + PIXEL, 'v'))
+			ft_print_key(keydata, p_map, p_map->textures.img_front);
+		else if (keydata.key == MLX_KEY_A
+			&& !ft_is_wall(p_map, p_map->x - 11, p_map->y, 'h'))
+			ft_print_key(keydata, p_map, p_map->textures.img_left);
+		else if (keydata.key == MLX_KEY_D
+			&& !ft_is_wall(p_map, p_map->x + PIXEL, p_map->y, 'h'))
+			ft_print_key(keydata, p_map, p_map->textures.img_right);
+	}
 }

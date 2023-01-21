@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/21 16:57:41 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:36:23 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,6 @@ int	ft_lenght_x(char *map)
 	return (len);
 }
 
-static	void	ft_terminate_play(t_img_p *p_map)
-{
-	
-}
-
 /**
  * @brief Pinta los objetos del juego excepto el jugador
  * si has cogido el coleccionable abre la puerta y desaparece el coleccionable
@@ -76,9 +71,6 @@ void	ft_draw_items(t_img_p *p_map)
 		p_map->p_items.y_bad);
 	if (p_map->x == p_map->p_items.x_col && p_map->y == p_map->p_items.y_col)
 		p_map->open = 1;
-	if (p_map->x == p_map->p_items.x_door && p_map->y == p_map->p_items.y_door
-		|| p_map->open == 1)
-		ft_terminate_play(p_map);
 	if (p_map->open)
 	{
 		mlx_draw_texture(p_map->img, p_map->textures.img_open_door,
