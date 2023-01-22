@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/22 12:14:02 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:10:10 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,33 @@ void	leaks(void)
 	system("leaks so_long");
 }
 
-static	void	init_col(t_img_p *p_map)
+static	int	init_col(t_img_p *p_map)
 {
 	int	y;
 	int	x;
 	int	c;
 
-	y = 0;
-	x = 0;
-	c = 0;
+	y = -1;
+	x = -1;
+	c = -1;
 	p_map->p_items.size_cols = ft_check_items(p_map, 0, 0, 0);
 	p_map->p_items.cols = malloc(sizeof(t_col_p) * p_map->p_items.size_cols);
-	while (p_map->height > y)
+	if (!p_map->p_items.cols)
+		return (0);
+	while (p_map->height > ++y)
 	{
-		x = 0;
-		while (p_map->map[y][x])
+		x = -1;
+		while (p_map->map[y][++x])
 		{
 			if (p_map->map[y][x] == 'C')
 			{
-				p_map->p_items.cols[c].visib = 1;
+				p_map->p_items.cols[++c].visib = 1;
 				p_map->p_items.cols[c].x = x;
 				p_map->p_items.cols[c].y = y;
-				c++;
 			}
-			x++;
 		}
-		y++;
 	}
+	return (0);
 }
 
 /**

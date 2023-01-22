@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/22 13:29:53 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:10:25 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	ft_generate_window(char *map, t_img_p *p_map)
 	mlx_draw_texture(p_map->img, p_map->textures.img_front, p_map->x, p_map->y);
 	ft_draw_items(p_map);
 	mlx_loop(p_map->mlx);
+	free(p_map->p_items.cols);
 	ft_delete_map(p_map);
 	ft_delete_imgs(&p_map->textures);
 	mlx_terminate(p_map->mlx);

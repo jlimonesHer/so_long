@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/22 11:20:15 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/22 13:40:57 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	ft_check_items(t_img_p *p_map, int p, int e, int c)
 		}
 		i++;
 	}
-	printf("p = %i, e = %i, c = %i\n",p,e,c);
 	if (p != 1 && e != 1 && c > 1)
 		return (0);
 	return (c);

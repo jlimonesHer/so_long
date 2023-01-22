@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 08:06:11 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/21 15:00:26 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:33:39 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ void	ft_read_map(char *file, t_img_p *p_map)
 	int		fd;
 	int		i;
 
-	p_map->map = malloc(sizeof(char *) * p_map->height);
+	p_map->map = malloc(sizeof(char **) * p_map->height);
 	i = 0;
 	fd = open(file, O_RDONLY);
 	ft_error_fd(fd);
-	p_map->map[i] = ft_change_end_string(get_next_line(fd));
-	while (p_map->map[i] != 0)
-		p_map->map[++i] = ft_change_end_string(get_next_line(fd));
+	while (i < p_map->height)
+		p_map->map[i++] = ft_change_end_string(get_next_line(fd));
 }
 
 /**
