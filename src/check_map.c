@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/15 12:45:49 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:20:15 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static int	check_wall_left_right(t_img_p *p_map)
 }
 
 /**
- * @brief Comprueba que al menos 1 objeto de cada tipo
+ * @brief Comprueba el numero de objetos del mapa y devuelve el numero de 
+ * coleccionables
  * 
  * @param p_map struck con variables inicializadas en ft_init_p_map
  * @param p posiciones iniciales disponibles en el mapa
@@ -78,7 +79,7 @@ static int	check_wall_left_right(t_img_p *p_map)
  * @param c coleccionables disponibles en el mapa
  * @return int size_t 1 si es correcto ,0 si no lo es
  */
-static int	ft_check_items(t_img_p *p_map, int p, int e, int c)
+int	ft_check_items(t_img_p *p_map, int p, int e, int c)
 {
 	int	i;
 	int	j;
@@ -100,9 +101,10 @@ static int	ft_check_items(t_img_p *p_map, int p, int e, int c)
 		}
 		i++;
 	}
-	if (p > 0 && e > 0 && c > 0)
-		return (1);
-	return (0);
+	printf("p = %i, e = %i, c = %i\n",p,e,c);
+	if (p != 1 && e != 1 && c > 1)
+		return (0);
+	return (c);
 }
 
 void	check_map(t_img_p *p_map)

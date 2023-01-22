@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:19:13 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/21 17:51:46 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/22 13:33:28 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	ft_print_key(mlx_key_data_t keydata, t_img_p *p_map, mlx_texture_t *img)
 {
 	char	*str;
 
-	str = ft_itoa(p_map->count++);
+	str = ft_itoa(p_map->count);
 	if (p_map->str_img)
 		mlx_delete_image(p_map->mlx, p_map->str_img);
 	p_map->str_img = mlx_put_string(p_map->mlx, str, 55, 55);
 	free(str);
 	if (keydata.action != 0)
-		ft_printf("key: %i, action: %d\n", p_map->count++, keydata.action);
+		ft_printf("Step: %d\n", p_map->count++);
 	if (keydata.key == MLX_KEY_W && keydata.action != 0)
 		p_map->y -= MOVE;
 	else if (keydata.key == MLX_KEY_S && keydata.action != 0)
@@ -94,7 +94,8 @@ void	move_and_perspective_p(mlx_key_data_t keydata, void *param)
 	p_map = (t_img_p *)param;
 	ft_key_scp(keydata, p_map);
 	if (!(p_map->x == p_map->p_items.x_door && p_map->y == p_map->p_items.y_door
-			&& p_map->open == 1) && !(p_map->x == p_map->p_items.x_bad && p_map->y == p_map->p_items.y_bad))
+			&& p_map->open == 1) && !(p_map->x == p_map->p_items.x_bad
+			&& p_map->y == p_map->p_items.y_bad))
 	{
 		if (keydata.key == MLX_KEY_W
 			&& !ft_is_wall(p_map, p_map->x, p_map->y - 11, 'v'))

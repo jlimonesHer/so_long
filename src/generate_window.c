@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/21 17:36:23 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/22 13:29:53 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,25 @@ int	ft_lenght_x(char *map)
 	return (len);
 }
 
+static	void	ft_check_colec(t_img_p *p_map)
+{
+	int		i;
+	int		n_visib;
+
+	i = -1;
+	n_visib = 0;
+	while (++i < p_map->p_items.size_cols)
+	{
+		if (p_map->p_items.cols[i].x * PIXEL == p_map->x
+			&& p_map->p_items.cols[i].y * PIXEL == p_map->y)
+			p_map->p_items.cols[i].visib = 0;
+		if (p_map->p_items.cols[i].visib)
+			n_visib++;
+	}
+	if (n_visib == 0)
+		p_map->open = 1;
+}
+
 /**
  * @brief Pinta los objetos del juego excepto el jugador
  * si has cogido el coleccionable abre la puerta y desaparece el coleccionable
@@ -67,10 +86,19 @@ int	ft_lenght_x(char *map)
  */
 void	ft_draw_items(t_img_p *p_map)
 {
+	int	i;
+
+	i = -1;
+	ft_check_colec(p_map);
+	while (p_map->p_items.size_cols > ++i)
+	{
+		if (p_map->p_items.cols[i].visib)
+			mlx_draw_texture(p_map->img, p_map->textures.img_col,
+				p_map->p_items.cols[i].x * PIXEL,
+				p_map->p_items.cols[i].y * PIXEL);
+	}
 	mlx_draw_texture(p_map->img, p_map->textures.img_bad, p_map->p_items.x_bad,
 		p_map->p_items.y_bad);
-	if (p_map->x == p_map->p_items.x_col && p_map->y == p_map->p_items.y_col)
-		p_map->open = 1;
 	if (p_map->open)
 	{
 		mlx_draw_texture(p_map->img, p_map->textures.img_open_door,
@@ -82,9 +110,6 @@ void	ft_draw_items(t_img_p *p_map)
 		mlx_draw_texture(p_map->img, p_map->textures.img_close_door,
 			p_map->p_items.x_door,
 			p_map->p_items.y_door);
-		mlx_draw_texture(p_map->img, p_map->textures.img_col,
-			p_map->p_items.x_col,
-			p_map->p_items.y_col);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/21 16:37:00 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:58:55 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,25 @@ typedef struct s_img_sprite
 	mlx_texture_t	*img_open_door;
 	mlx_texture_t	*img_wall;
 	mlx_texture_t	*img_col;
+	mlx_texture_t	*img_col2;
 	mlx_texture_t	*img_bad;
 }	t_img_sprite;
 
+typedef struct s_col_p
+{
+	int	visib;
+	int	x;
+	int	y;
+}	t_col_p;
+
 typedef struct s_items_p
 {
-	int	x_col;
-	int	y_col;
-	int	x_bad;
-	int	y_bad;
-	int	x_door;
-	int	y_door;
+	t_col_p	*cols;
+	int		size_cols;
+	int		x_bad;
+	int		y_bad;
+	int		x_door;
+	int		y_door;
 }	t_items_p;
 
 /**
@@ -85,6 +93,7 @@ int			ft_free_road(t_img_p *p_map);
 void		ft_read_map(char *file, t_img_p *p_map);
 void		ft_delete_map(t_img_p *p_map);
 void		ft_draw_items(t_img_p *p_map);
+int			ft_check_items(t_img_p *p_map, int p, int e, int c);
 void		ft_error(char *error);
 void		ft_error_fd(int fd);
 #endif
