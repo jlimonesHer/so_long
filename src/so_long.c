@@ -6,12 +6,16 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/22 14:10:10 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:22:00 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief funcion para comprobar los leaks de memoria
+ * 
+ */
 void	leaks(void)
 {
 	system("leaks so_long");
@@ -47,7 +51,7 @@ static	int	init_col(t_img_p *p_map)
 }
 
 /**
- * @brief asigna el valor a la estructura inicial
+ * @brief asigna los valores a la struck inicial
  * 
  * @param file recibe el mapa.ber
  * @param p_map recibe la struc inicial

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   move_pj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 12:19:13 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/24 10:56:28 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:09:51 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /**
- * @brief Imprime la tecla
+ * @brief controla el movimiento del pj
  * 
- * @param keydata 
- * @param p_map 
- * @param img 
+ * @param keydata recibe la tecla pulsada
+ * @param p_map recibe la struck inicializada
+ * @param img recibe la imagen de fondo
  */
 
 void	ft_print_key(mlx_key_data_t keydata, t_img_p *p_map, mlx_texture_t *img)
@@ -51,11 +51,11 @@ static void	ft_key_scp(mlx_key_data_t keydata, t_img_p *p_map)
 }
 
 /**
- * @brief 
+ * @brief comprueba si hay un muro para saber si el movimiento es posible
  * 
- * @param p_map 
- * @param x 
- * @param y 
+ * @param p_map la struck inicializada
+ * @param pix_x recibe la posicion x del proximo movimiento
+ * @param pix_y recibe la posicion y del prosimo movimiento
  * @param eje h: eje horizontal, v: eje vertical
  * @return int 
  */
@@ -82,7 +82,10 @@ static int	ft_is_wall(t_img_p *p_map, int pix_x, int pix_y, char eje)
 }
 
 /**
- * @brief Funcion para desplazar el personaje
+ * @brief Funcion para desplazar el personaje 
+ * controla que no entre en la zona del enemigo si lo hace se acaba la partida
+ * controla que no entre en la zona de la salida y has cogido todos los 
+ * coleccionables si lo hace se acaba la partida
  * 
  * @param keydata recibe la key de las teclas
  * @param param parametro vacio
@@ -94,10 +97,10 @@ void	move_and_perspective_p(mlx_key_data_t keydata, void *param)
 	p_map = (t_img_p *)param;
 	ft_key_scp(keydata, p_map);
 	if (!(p_map->x == p_map->p_items.x_door && p_map->y == p_map->p_items.y_door
-			&& p_map->open == 1) && !(p_map->x >= p_map->p_items.x_bad - 25
-			&& p_map->x <= p_map->p_items.x_bad + 25
-			&& p_map->y >= p_map->p_items.y_bad - 25
-			&& p_map->y <= p_map->p_items.y_bad + 25))
+			&& p_map->open == 1) && !(p_map->x >= p_map->p_items.x_bad - 45
+			&& p_map->x <= p_map->p_items.x_bad + 45
+			&& p_map->y >= p_map->p_items.y_bad - 45
+			&& p_map->y <= p_map->p_items.y_bad + 45))
 	{
 		if (keydata.key == MLX_KEY_W
 			&& !ft_is_wall(p_map, p_map->x, p_map->y - 11, 'v'))

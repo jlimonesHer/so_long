@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/23 20:01:21 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:11:40 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,11 @@ int	ft_check_items(t_img_p *p_map, int p, int e, int c)
 	return (c);
 }
 
+/**
+ * @brief hace todas comprobaciones excepto si hay un camino posible
+ * 
+ * @param p_map recibe la struck inicializada
+ */
 void	check_map(t_img_p *p_map)
 {
 	if (!check_lines_matrix(p_map) || !check_wall_up_donw(p_map)

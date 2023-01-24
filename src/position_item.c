@@ -6,14 +6,14 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/22 12:13:08 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:19:24 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /**
- * @brief localiza el eje y objeto pasado por parametro
+ * @brief localiza el eje 'y' objeto pasado por parametro
  * 
  * @param p_map struck con variables inicializadas
  * @param obj objeto a localizar
@@ -39,7 +39,7 @@ int	position_item_y_matrix(t_img_p *p_map, char obj)
 }
 
 /**
- * @brief localiza el eje x objeto pasado por parametro
+ * @brief localiza el eje 'x' objeto pasado por parametro
  * 
  * @param p_map struck con variables inicializadas
  * @param obj objeto a localizar

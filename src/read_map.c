@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 08:06:11 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/22 14:33:39 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:20:55 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	*ft_change_end_string(char *str)
 /**
  * @brief Funcion para guardar el mapa en una matriz
  * 
- * @param map recibe el mapa.ber
+ * @param file recibe el nombre del archivo
+ * @param p_map recibe la struck inicializada
  */
 void	ft_read_map(char *file, t_img_p *p_map)
 {

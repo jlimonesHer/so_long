@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   load_delete_img.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:01:06 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/23 20:23:36 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:18:50 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief comprueba que no haya errores en la carga de imagenes
+ * 
+ * @param img recibe las imagenes
+ */
 static	void	ft_error_img(t_img_sprite *img)
 {
 	if (!img->img_front || !img->img_back || !img->img_left || !img->img_right
@@ -22,13 +27,15 @@ static	void	ft_error_img(t_img_sprite *img)
 
 /**
  * @brief Funcion para guardar las imagenes en una struck
+ * 
+ * @param img recibe las imagenes
  */
 void	ft_save_imgs(t_img_sprite *img)
 {
-	img->img_front = mlx_load_png("./img/front_flat.png");
-	img->img_back = mlx_load_png("./img/back_flat.png");
-	img->img_left = mlx_load_png("./img/left_flat.png");
-	img->img_right = mlx_load_png("./img/right_flat.png");
+	img->img_front = mlx_load_png("./img/evil_front.png");
+	img->img_back = mlx_load_png("./img/evil_back.png");
+	img->img_left = mlx_load_png("./img/evil_left.png");
+	img->img_right = mlx_load_png("./img/evil_right.png");
 	img->img_flat = mlx_load_png("./img/flat_new.png");
 	img->img_close_door = mlx_load_png("./img/close_door.png");
 	img->img_open_door = mlx_load_png("./img/open_door.png");
@@ -39,7 +46,9 @@ void	ft_save_imgs(t_img_sprite *img)
 }
 
 /**
- * @brief Funcion para liberar imagenes
+ * @brief  Funcion para liberar imagenes
+ * 
+ * @param img recibe las imagenes
  */
 void	ft_delete_imgs(t_img_sprite *img)
 {

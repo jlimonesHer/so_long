@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/23 21:31:45 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:17:27 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ int	ft_lenght_x(char *map)
 	return (len);
 }
 
+/**
+ * @brief comprueba cuantos coleccionables quedan en el 
+ * mapa y cambia su condicion de visible
+ * 
+ * @param p_map recibe la struck inicializada
+ */
 static	void	ft_check_colec(t_img_p *p_map)
 {
 	int		i;
@@ -116,9 +122,9 @@ void	ft_draw_items(t_img_p *p_map)
 }
 
 /**
- * @brief carga las funciones para iniciar el juego
+ * @brief carga las funciones necesarias para el desarrollo del juego
  * 
- * @param map recible el strin con la ruta del mapa
+ * @param map recible el string con la ruta del mapa
  * @param p_map recibe la estructura con las variables inicializadas
  */
 void	ft_generate_window(char *map, t_img_p *p_map)
