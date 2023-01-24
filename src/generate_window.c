@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/22 14:10:25 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/23 21:31:45 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ static	void	ft_check_colec(t_img_p *p_map)
 	n_visib = 0;
 	while (++i < p_map->p_items.size_cols)
 	{
-		if (p_map->p_items.cols[i].x * PIXEL == p_map->x
-			&& p_map->p_items.cols[i].y * PIXEL == p_map->y)
+		if ((p_map->p_items.cols[i].x - 1) * PIXEL + 25 <= p_map->x
+			&& (p_map->p_items.cols[i].x + 1) * PIXEL - 25 >= p_map->x
+			&& (p_map->p_items.cols[i].y - 1) * PIXEL + 25 <= p_map->y
+			&& (p_map->p_items.cols[i].y + 1) * PIXEL -25 >= p_map->y)
 			p_map->p_items.cols[i].visib = 0;
 		if (p_map->p_items.cols[i].visib)
 			n_visib++;

@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   free_road.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:53:24 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/21 15:28:19 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:37:38 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/**
+ * @brief pinta todas las casillas accesibles con una x y asi comprobar que 
+ * hay un camino posible
+ * 
+ * @param p_map  recibe las variables inicializadas
+ * @param y recibe la posicion y del personaje
+ * @param x recibe la posicion x del personaje
+ */
 static void	ft_print_x_map(t_img_p *p_map, int y, int x)
 {
 	char	c;
@@ -29,6 +37,12 @@ static void	ft_print_x_map(t_img_p *p_map, int y, int x)
 	}
 }
 
+/**
+ * @brief busca caracteres diferentes a 'x' y '1'
+ * 
+ * @param p_map recibe las variables inicializadas
+ * @return int 
+ */
 int	ft_free_road(t_img_p *p_map)
 {
 	int		i;

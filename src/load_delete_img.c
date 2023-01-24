@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_delete_img.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:01:06 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/22 10:51:46 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:23:36 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,3 @@ void	ft_delete_imgs(t_img_sprite *img)
 	mlx_delete_texture(img->img_col);
 	mlx_delete_texture(img->img_bad);
 }
-/*
-void	ft_display_img(void)
-{
-	t_img_sprite	img;
-}
-*/
-
-/**
- * hacer funcion para controlar que los archivos pgn existen
-	if (!img->img_front) printf("front\n");
-	if (!img->img_back) printf("1\n");
-	if (!img->img_left) printf("2\n");
-	if (!img->img_right) printf("3\n");
-	if (!img->img_flat) printf("4\n");
-	if (!img->img_close_door) printf("5\n");
-	if (!img->img_open_door) printf("6\n");
-	if (!img->img_wall) printf("7\n");
-	if (!img->img_col) printf("8\n");
-	if (!img->img_bad) printf("9\n"); 
- */

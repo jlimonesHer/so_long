@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:29:27 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/17 12:17:22 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:03:34 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief la funcion comprueba el caracter
- * Falta por posicionar el personaje(P) y el enemigo(caracter a elegir)
+ * 
  * @param line linea leida por get_next_line
  * @param img struct para cargar los sprites
  */
