@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/24 12:40:29 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:59:10 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	ft_init_p_map(char *file, t_img_p *p_map)
 	}
 	ft_delete_map(p_map);
 	ft_read_map(file, p_map);
-	init_col(p_map);
-	p_map->p_items.y_bad = position_item_y_matrix(p_map, 'B') * PIXEL - PIXEL;
+	p_map->p_items.y_bad = (position_item_y_matrix(p_map, 'B') * PIXEL) - PIXEL;
 	p_map->p_items.x_bad = position_item_x_matrix(p_map, 'B') * PIXEL;
 	p_map->p_items.y_door = position_item_y_matrix(p_map, 'E') * PIXEL - PIXEL;
 	p_map->p_items.x_door = position_item_x_matrix(p_map, 'E') * PIXEL;
+	init_col(p_map);
 	p_map->open = 0;
 	p_map->str_img = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/24 12:44:35 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:03:25 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
