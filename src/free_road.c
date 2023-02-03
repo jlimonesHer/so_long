@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:53:24 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/25 09:58:50 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:13:54 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	ft_print_x_map(t_img_p *p_map, int y, int x)
 	char	c;
 
 	c = p_map->map[y][x];
-	printf("c = %c\n", p_map->map[y][x]);
 	if (c == 'x')
 		return ;
 	if (c != '1' && c != '\0' && p_map->map[y] != 0)

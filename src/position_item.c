@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/25 09:46:20 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:30:52 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int	position_item_y_matrix(t_img_p *p_map, char obj)
 			x++;
 		if (p_map->map[y] != 0 && p_map->map[y][x] != obj)
 			y++;
+		//printf("y = %i, obj = %c\n", y, obj);
 	}
+	if (y >= p_map->height)
+		ft_error("Uno o varios objetos estan mal colocados");
 	if (p_map->map[y][x] == obj)
 		return (y + 1);
 	if (obj != 'P' && obj != 'B' && obj != 'E'
 		&& obj != '1' && obj != '0' && obj != 'C')
 		ft_error("Uno o varios objetos estan mal colocados");
-	ft_error("Uno o varios objetos estan mal colocados");
 	return (0);
 }
 

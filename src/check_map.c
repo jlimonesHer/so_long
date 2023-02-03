@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/25 09:50:45 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:21:46 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	ft_check_items(t_img_p *p_map, int p, int e, int c)
  */
 void	check_map(t_img_p *p_map)
 {
-	if (!check_lines_matrix(p_map) || !check_wall_up_donw(p_map)
-		|| !check_wall_left_right(p_map) || !ft_check_items(p_map, 0, 0, 0))
+	if (!ft_check_items(p_map, 0, 0, 0) || !check_wall_up_donw(p_map)
+		|| !check_wall_left_right(p_map) || !check_lines_matrix(p_map))
 		ft_error("Ha ocurrido algun fallo al leer el mapa\n");
 }
