@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/02/03 19:15:08 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:51:42 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_init_p_map(char *file, t_img_p *p_map)
 	if (!ft_free_road(p_map))
 	{
 		ft_delete_map(p_map);
-		ft_error("El mapa no tiene salida\n");
+		ft_error("El mapa no tiene salida o hay un objeto mal colocado.\n");
 	}
 	ft_delete_map(p_map);
 	ft_read_map(file, p_map);

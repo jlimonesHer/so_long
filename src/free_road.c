@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:53:24 by jlimones          #+#    #+#             */
-/*   Updated: 2023/02/03 19:13:54 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:49:41 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ static void	ft_print_x_map(t_img_p *p_map, int y, int x)
 	char	c;
 
 	c = p_map->map[y][x];
+	if (c != 'P' && c != 'E' && c != 'C' && c != 'B' && c != '1' && c != '0')
+		return ;
 	if (c == 'x')
 		return ;
-	if (c != '1' && c != '\0' && p_map->map[y] != 0)
+	if (c != '1' && c != 'B' && c != '\0' && p_map->map[y] != 0)
 	{
 		p_map->map[y][x] = 'x';
 		ft_print_x_map(p_map, y + 1, x);
@@ -56,7 +58,8 @@ int	ft_free_road(t_img_p *p_map)
 		j = 0;
 		while (j < p_map->width)
 		{
-			if (p_map->map[i][j] != '1' && p_map->map[i][j] != 'x')
+			if (p_map->map[i][j] != '1' && p_map->map[i][j] != 'x'
+				&& p_map->map[i][j] != 'B')
 				return (0);
 			j++;
 		}
