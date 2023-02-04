@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   position_item.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/02/03 19:37:03 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:23:42 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	position_item_y_matrix(t_img_p *p_map, char obj)
 			y++;
 	}
 	if (y >= p_map->height)
-		ft_error("Uno o varios objetos estan mal colocados");
+		ft_error("Uno o varios objetos estan mal colocados\n");
 	if (p_map->map[y][x] == obj)
 		return (y + 1);
-	ft_error("Uno o varios objetos estan mal colocados");
+	ft_error("Uno o varios objetos estan mal colocados\n");
 	return (0);
 }
 

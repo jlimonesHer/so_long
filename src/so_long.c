@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:53:30 by jlimones          #+#    #+#             */
-/*   Updated: 2023/02/03 19:51:42 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:23:26 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ int	main(int argc, char **argv)
 	{	
 		ft_init_p_map(argv[1], &p_map);
 		ft_generate_window(argv[1], &p_map);
+	}
+	else
+	{
+		ft_printf("help: [./so_long maps/map.ber]\n");
+		ft_error("Debe incluir la ruta del archivo que contine el mapa.\n");
 	}
 	return (0);
 }

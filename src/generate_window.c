@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:08:52 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/24 19:03:25 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:24:48 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	ft_generate_window(char *map, t_img_p *p_map)
 	p_map->img = mlx_new_image(p_map->mlx, PIXEL * p_map->width,
 			PIXEL * p_map->height);
 	if (!p_map->img)
-		ft_error("Error al cargar la ventana");
+		ft_error("Error al cargar la ventana\n");
 	mlx_key_hook(p_map->mlx, move_and_perspective_p, p_map);
 	mlx_image_to_window(p_map->mlx, p_map->img, 0, 0);
 	read_and_draw_map(map, p_map->textures, p_map);

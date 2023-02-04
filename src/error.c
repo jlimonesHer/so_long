@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 11:48:09 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/24 12:14:53 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:24:39 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_error_fd(int fd)
 {
 	if (fd < 0)
 	{
-		ft_putstr_fd("Algo ha fallado al leer el archivo", 2);
+		ft_putstr_fd("Algo ha fallado al leer el archivo\n", 2);
 		exit(-1);
 	}
 }
