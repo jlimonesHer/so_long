@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 08:04:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/13 08:18:55 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:11:06 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_img_p
 	int				y;
 	int				height;
 	int				width;
+	char			*map;
 }	t_img_p;
 
 void		ft_close_and_free(int fd, char *line);
@@ -58,11 +59,10 @@ void		move_and_perspective(mlx_key_data_t keydata, void *param);
 void		check_map(char *map, t_img_p *posit);
 void		ft_delete_imgs(t_img_sprite *img);
 void		ft_save_imgs(t_img_sprite *img);
-void		ft_generate_map(char *map, t_img_p *posit);
-int			ft_lenght_x(char *map);
-int			ft_lenght_y(char *map);
+int			ft_width(char *map);
+int			ft_height(char *map);
 void		read_and_draw_map(char *map, t_img_sprite img, t_img_p *posit);
-void		ft_generate_window(char *map, t_img_p *p_map);
+void		ft_generate_window(t_img_p *p_map);
 int			position_item_x(char *map, char totem);
 int			position_item_y(char *map, char totem);
 void		ft_init_p_map(char *map, t_img_p *p_map);

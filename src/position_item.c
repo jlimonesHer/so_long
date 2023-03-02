@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:49:10 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/12 18:33:44 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:50:14 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,17 @@ void	ft_close_and_free(int fd, char *line)
  * @param totem recibe el carracter al que calcular la posicion
  * @return int eje x
  */
-int	position_item_x(char *map, char totem)
+int	position_item_y(char *map, char totem)
 {
 	size_t	fd;
 	char	*line;
 	int		i;
-	int		x;
+	int		y;
 
-	x = 1;
+	y = 0;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
+	printf("line GNL y: %s\n", line);
 	while (line != NULL)
 	{
 		i = 0;
@@ -49,9 +50,9 @@ int	position_item_x(char *map, char totem)
 		if (line[i] == totem)
 		{
 			ft_close_and_free(fd, line);
-			return (x);
+			return (y);
 		}
-		x++;
+		y++;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -66,7 +67,7 @@ int	position_item_x(char *map, char totem)
  * @param totem recibe el carracter al que calcular la posicion
  * @return int eje y
  */
-int	position_item_y(char *map, char totem)
+int	position_item_x(char *map, char totem)
 {
 	size_t	fd;
 	char	*line;
@@ -74,15 +75,16 @@ int	position_item_y(char *map, char totem)
 
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
+	printf("line GNL x: %s\n", line);
 	while (line != NULL)
 	{
-		i = 1;
+		i = 0;
 		while (line[i] && line[i] != totem)
 			i++;
 		if (line[i] == totem)
 		{
 			ft_close_and_free(fd, line);
-			return (i );
+			return (i);
 		}
 		free(line);
 		line = get_next_line(fd);

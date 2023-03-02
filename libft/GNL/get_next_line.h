@@ -6,7 +6,7 @@
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 08:40:24 by jlimones          #+#    #+#             */
-/*   Updated: 2022/12/21 11:36:46 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:35:22 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1
 
 #  include <unistd.h>
 #  include <fcntl.h>
