@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/20 19:06:23 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/14 12:05:38 by jlimones         ###   ########.fr       */
+/*   Created: 2023/01/15 11:48:09 by jlimones          #+#    #+#             */
+/*   Updated: 2023/02/04 11:28:54 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-size_t	ft_strlen(const char *s)
+/**
+ * @brief Funcion error personalizado
+ * 
+ * @param error String a mostrar por terminal
+ */
+void	ft_error(char *error)
 {
-	size_t	i;
+	ft_putstr_fd(error, 2);
+	exit(-1);
+}
 
-	i = 0;
-	while (s[i] != '\0')
+/**
+ * @brief funcion de error estandar
+ * 
+ * @param fd 
+ */
+void	ft_error_fd(int fd)
+{
+	if (fd < 0)
 	{
-		i++;
+		ft_putstr_fd("Algo ha fallado al leer el archivo\n", 2);
+		exit(-1);
 	}
-	return (i);
 }

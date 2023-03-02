@@ -3,135 +3,121 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:29:47 by jlimones          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/01/13 10:48:24 by jlimones         ###   ########.fr       */
+=======
+/*   Updated: 2023/02/03 19:21:46 by jlimones         ###   ########.fr       */
+>>>>>>> e397e74c1f03a57c09a84d30986a2c1e6cd51e62
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /**
- * @brief Chekea que todas las lineas sean del mismo tamaño
+ * @brief Comprueba que todas las lineas tengan el mismo largo
  * 
- * @param fd recibe el fd del fichero a leer
- * @param map recibe la ruta al fichero
- * @return devuelve 0 si las lineas son iguales o 1 en caso contrario.
+ * @param p_map struck con las variables iniciadas
+ * @return size_t 1 si es correcto ,0 si no lo es
  */
-static	int	check_lines(int fd)
+static	size_t	check_lines_matrix(t_img_p *p_map)
 {
-	int		len;
-	int		len_lines;
-	char	*line;
-	char	*fd_lines;
-	int		res;
-
-	res = 0;
-	line = get_next_line(fd);
-	fd_lines = get_next_line(fd);
-	len = ft_strlen(line);
-	free(line);
-	len_lines = ft_strlen(fd_lines);
-	while (fd_lines != NULL && res == 0)
-	{
-		len_lines = ft_strlen(fd_lines);
-		free(fd_lines);
-		if (len != len_lines)
-			res = 1;
-		fd_lines = get_next_line(fd);
-	}
-	free(fd_lines);
-	close(fd);
-	return (res);
-}
-
-/**
- * @brief 
- * 
- * @param fd 
- * @param map 
- * @param posit 
- * @return int 
- */
-static	int	check_obj(int fd, char *map, t_img_p *posit)
-{
-	int		c;
-	int		e;
+	size_t	len;
 	int		i;
-	char	*line;
 
-	c = 0;
-	fd = open(map, O_RDONLY);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		i = -1;
-		while (line[++i])
-		{
-			if (line[i] == 'E')
-				e = 1;
-			if (line[i] == 'C')
-				c = 1;
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	if (c < 1 || e < 1 || posit->x < 0 || posit->y < 0)
+	i = 0;
+	len = ft_strlen(p_map->map[0]);
+	while (i < p_map->height && len == ft_strlen(p_map->map[i]))
+		i++;
+	if (i == p_map->height)
 		return (1);
 	return (0);
 }
 
 /**
- * @brief Comprueba que el mapa sea un rectangulo
+ * @brief Comprueba que las lineas laterales sean muros
  * 
- * @param fd recibe el fd del fichero a leer
- * @param map recibe la ruta al fichero
- * @return int / Numero de lineas que contiene el mapa
+ * @param p_map struck con variables inicializadas en ft_init_p_map
+ * @return int size_t 1 si es correcto ,0 si no lo es
  */
-static	int	check_rectangle(int fd, char *map, t_img_p *posit)
+static int	check_wall_up_donw(t_img_p *p_map)
 {
-	int		len;
-	int		total_line;
-	char	*line;
+	int	i;
 
-	total_line = 1;
-	if (!check_lines(fd) && check_obj(fd, map, posit) == 0)
-	{
-		fd = open(map, O_RDONLY);
-		line = get_next_line(fd);
-		len = ft_strlen(line);
-		free(line);
-		while (line != NULL)
-		{
-			line = get_next_line(fd);
-			total_line++;
-			free(line);
-		}
-		if (total_line == len && total_line < 4)
-			total_line = 0;
-	}
-	close(fd);
-	return (total_line - 1);
+	i = 0;
+	while (p_map->map[0][i] == '1' && p_map->map[p_map->height - 1][i] == '1')
+		i++;
+	if (i == p_map->width)
+		return (1);
+	return (0);
 }
 
 /**
- * @brief Funcion para leer el mapa
+ * @brief comprueba que la primera fila y la ultima sean muros
  * 
- * @param map ruta al archivo .ber recibido por parametro
- * @return int 
+ * @param p_map  struck con variables inicializadas en ft_init_p_map
+ * @return int size_t 1 si es correcto ,0 si no lo es
  */
-void	check_map(char *map, t_img_p *posit)
+static int	check_wall_left_right(t_img_p *p_map)
 {
-	size_t	fd;
+	int	i;
 
-	fd = open(map, O_RDONLY);
-	if (check_rectangle(fd, map, posit) < 4)
+	i = 0;
+	while (p_map->height > i && p_map->map[i][p_map->width - 1] == '1'
+			&& p_map->map[i][0] == '1')
+		i++;
+	if (i == p_map->height)
+		return (1);
+	return (0);
+}
+
+/**
+ * @brief Comprueba el numero de objetos del mapa y devuelve el numero de 
+ * coleccionables
+ * 
+ * @param p_map struck con variables inicializadas en ft_init_p_map
+ * @param p posiciones iniciales disponibles en el mapa
+ * @param e Salidas disponibles en el mapa
+ * @param c coleccionables disponibles en el mapa
+ * @return int size_t 1 si es correcto ,0 si no lo es
+ */
+int	ft_check_items(t_img_p *p_map, int p, int e, int c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (p_map->height > i)
 	{
-		ft_printf("Can't read the map\n");
-		exit(-1);
-		//Funcion para terminar el programa
+		j = 0;
+		while (p_map->map[i][j])
+		{
+			if (p_map->map[i][j] == 'P')
+				p++;
+			else if (p_map->map[i][j] == 'E')
+				e++;
+			else if (p_map->map[i][j] == 'C')
+				c++;
+			j++;
+		}
+		i++;
 	}
-	close(fd);
+	if (p != 1 && e != 1 && c > 1)
+		return (0);
+	return (c);
+}
+
+/**
+ * @brief hace todas comprobaciones excepto si hay un camino posible
+ * 
+ * @param p_map recibe la struck inicializada
+ */
+void	check_map(t_img_p *p_map)
+{
+	if (!ft_check_items(p_map, 0, 0, 0) || !check_wall_up_donw(p_map)
+		|| !check_wall_left_right(p_map) || !check_lines_matrix(p_map))
+		ft_error("Ha ocurrido algun fallo al leer el mapa\n");
 }
