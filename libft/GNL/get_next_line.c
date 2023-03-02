@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 08:40:28 by jlimones          #+#    #+#             */
-/*   Updated: 2023/03/02 18:07:22 by jlimones         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:57:37 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 #include <unistd.h>
 #include <stdlib.h>
 
 char	*get_next_line(int fd)
 {
-	static char	*buff[4096];
+	static char	*buff;
 	char		*str;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, 0, 0) < 0 || fd > 4096)
-	{
-		free(buff[fd]);
-		buff[fd] = NULL;
+	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, 0, 0) < 0)
 		return (0);
-	}
-	buff[fd] = ft_read(fd, buff[fd]);
-	if (!buff[fd])
+	buff = ft_read(fd, buff);
+	if (!buff)
 		return (0);
-	str = ft_get_line(buff[fd]);
-	buff[fd] = ft_get_static(buff[fd]);
+	str = ft_get_line(buff);
+	buff = ft_get_static(buff);
 	return (str);
 }
 
@@ -112,7 +108,7 @@ char	*ft_get_static(char *buff)
 		free(buff);
 		return (0);
 	}
-	n_buffer = ft_calloc_gnl(ft_strlen(buff) - i + 1, sizeof(char));
+	n_buffer = ft_calloc_gnl(ft_strlen_gnl(buff) - i + 1, sizeof(char));
 	if (!n_buffer)
 		return (0);
 	i++;

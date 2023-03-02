@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlimones <jlimones@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlimones <jlimones@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 08:06:11 by jlimones          #+#    #+#             */
-/*   Updated: 2023/01/24 12:20:55 by jlimones         ###   ########.fr       */
+/*   Updated: 2023/01/13 08:31:24 by jlimones         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char	*ft_change_end_string(char *str)
 {
 	int		i;
 
-	i = 0;
-	while (str && str[i])
+	while (str[i])
 	{
 		if (str[i] == '\n')
 		{
@@ -32,39 +31,22 @@ char	*ft_change_end_string(char *str)
 		}
 		i++;
 	}
-	return (str);
 }
 
 /**
  * @brief Funcion para guardar el mapa en una matriz
  * 
- * @param file recibe el nombre del archivo
- * @param p_map recibe la struck inicializada
+ * @param map recibe el mapa.ber
  */
-void	ft_read_map(char *file, t_img_p *p_map)
+void	ft_read_map(char *map)
 {
 	int		fd;
 	int		i;
-
-	p_map->map = malloc(sizeof(char **) * p_map->height);
-	i = 0;
-	fd = open(file, O_RDONLY);
-	ft_error_fd(fd);
-	while (i < p_map->height)
-		p_map->map[i++] = ft_change_end_string(get_next_line(fd));
-}
-
-/**
- * @brief funcion para liberar la matriz creada para el mapa
- * 
- * @param p_map mapa .ber
- */
-void	ft_delete_map(t_img_p *p_map)
-{
-	int	i;
+	char	**m_map;
 
 	i = 0;
-	while (i < p_map->height)
-		free(p_map->map[i++]);
-	free(p_map->map);
+	fd = open(map, O_RDONLY);
+	m_map[i] = get_next_line(fd);
+	while (m_map[i] != NULL)
+		m_map[++i] = get_next_line(fd);
 }
